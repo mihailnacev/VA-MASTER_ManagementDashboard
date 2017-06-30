@@ -1,0 +1,32 @@
+{
+  "name": "polls",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "babel-preset-react": "^6.24.1",
+    "babelify": "^7.3.0",
+    "bootstrap": "^3.3.7",
+    "browserify": "^14.4.0",
+    "classnames": "^2.2.5",
+    "express": "^4.15.3",
+    "glyphicons": "^0.2.0",
+    "jquery": "^3.2.1",
+    "network": "^0.3.2",
+    "react": "^15.6.1",
+    "react-bootstrap": "^0.31.0",
+    "react-dom": "^15.6.1",
+    "react-router": "^4.1.1",
+    "react-router-dom": "^4.1.1",
+    "request": "^2.81.0",
+    "xml2js": "^0.4.17"
+  },
+  "devDependencies": {
+    "babelify": "^7.3.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

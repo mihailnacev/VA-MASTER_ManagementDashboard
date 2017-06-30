@@ -9,7 +9,6 @@ from .models import Company, DataCenter, VAMaster
 from django.core import serializers
 
 
-
 def get_all_companies(request):
     # data=serializers.serialize('json',Company.objects.all())
     # data= json.dumps(Company.objects.all())
