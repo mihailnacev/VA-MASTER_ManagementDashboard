@@ -7,16 +7,23 @@ from django.core.urlresolvers import reverse
 from django.template import loader
 from .models import Company, DataCenter, VAMaster
 from django.core import serializers
+from rest_framework.decorators import api_view
 
 
+@api_view(['GET'])
 def get_all_companies(request):
     # data=serializers.serialize('json',Company.objects.all())
     # data= json.dumps(Company.objects.all())
     data_json=[]
     for company in Company.objects.all():
         data_json.append(json.dumps(company.to_json()))
-    data= json.dumps(data_json)
-    return JsonResponse(data, safe=False)
+    data = json.dumps(data_json)
+    resp = JsonResponse(data, safe=False)
+    resp['Access-Control-Allow-Origin']= '*'
+    return resp
+    # return JsonResponse(data, safe=False)
+    # return HttpResponse(data, content_type='application/json')
+
 def get_company(request,company_id):
     company =  Company.objects.get(pk=company_id).to_json()
     company = json.dumps(company)

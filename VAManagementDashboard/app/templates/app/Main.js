@@ -13,8 +13,7 @@ class Main extends React.Component {
             render() {
                 return (
                 <div>
-                    <SideBar className="col-md-3"/>
-                    <Company/>
+                    <SideBar class="col-md-offset-3"/>
                 </div>);
             }
         }

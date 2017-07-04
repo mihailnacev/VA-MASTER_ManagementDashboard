@@ -67,7 +67,7 @@
               }
               >
                 <li>
-                  <a href="" onClick={(e) => { e.preventDefault(); }} >
+                  <a href="#/DataCenter">
                     Data Centers
                   </a>
                 </li>
@@ -79,7 +79,7 @@
                 </li>
 
                   <li>
-                  <a href="" onClick={(e) => { e.preventDefault(); }}>
+                  <a href="#/Company">
                     Companies
                   </a>
                 </li>

@@ -1,19 +1,19 @@
 /**
- * Created by mnace on 6/30/2017.
+ * Created by mnace on 7/3/2017.
  */
-            var React=require('react');
+ var React=require('react');
             var ReactDOM=require('react-dom');
             var Bootstrap=require('react-bootstrap');
             var classNames=require('classnames');
             var Icons=require('glyphicons');
             var request=require('request');
-            var SideBar=require('./Sidebar');
+             var SideBar=require('./Sidebar');
             //var express=require('express');
             //var cors=require('cors');
             //var app= express();
 
 
-            class Companies extends React.Component{
+            class ShowDataCenters extends React.Component{
 
                 constructor(){
                     super();
@@ -87,9 +87,9 @@
 
                     return (
                         <div>
-                         <SideBar/>
+                         <SideBar className="col-md-3"/>
                         <div className="col-md-offset-4 col-md-7">
-                       <Bootstrap.PageHeader>Show Companies</Bootstrap.PageHeader>
+                       <Bootstrap.PageHeader>Show DataCenters</Bootstrap.PageHeader>
                         <Bootstrap.Table striped bordered hover>
                 <thead>
                     <tr>
@@ -103,11 +103,11 @@
                     {company_rows}
                 </tbody>
             </Bootstrap.Table>
-
                         </div>
-                        </div>);
+                    </div>);
                }
 
             };
 
-            module.exports = Companies;
+            module.exports = ShowDataCenters;
+
