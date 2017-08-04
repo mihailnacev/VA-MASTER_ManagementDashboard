@@ -1,0 +1,20 @@
+.sidebar{
+  position: absolute;
+    margin-right: -100%;
+    z-index: 1000;
+    display: flex;
+    background-color: #f5f5f5;
+    border-right: 1px solid #dddddd;
+    min-height: calc(100vh - 50px);
+    height: 100%;
+    width: 310px;
+    left: 0px;
+    transition: left 350ms ease-in-out;
+}
+
+.modal-container {
+  position: relative;
+}
+.modal-container .modal, .modal-container .modal-backdrop {
+  position: absolute;
+}

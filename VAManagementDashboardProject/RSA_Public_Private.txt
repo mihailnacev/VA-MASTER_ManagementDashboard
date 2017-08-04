@@ -1,0 +1,48 @@
+// JAVASCRIPT_part I
+// browserify imports
+var NodeRSA=require('node-rsa');
+var keypair=require('keypair');
+var fs=require('fs');
+
+var pair=keypair();
+console.log(pair);
+console.log(pair.public);
+var key_public = new NodeRSA(pair.public);
+var text = 'Hello RSA!';
+var encrypted = key_public.encrypt(text, 'base64');
+console.log('encrypted: ', encrypted);
+
+var key_private = new NodeRSA(pair.private);
+var decrypted = key_private.decrypt(encrypted, 'utf8');
+console.log('decrypted: ', decrypted);
+
+// PYTHON DJANGO
+import Crypto
+from Crypto.Cipher import AES
+from Crypto.Cipher import PKCS1_OAEP
+from Crypto.PublicKey import RSA
+
+// PART I - GENERATION PVT, PUB KEY to rsa.pub, rsa.pvt FILES
+#Quick way to generate a new key
+private_key = RSA.generate(1024)
+#Show the real content of the private part to console, be careful with this!
+print(private_key.exportKey())
+#Get the public part
+public_key = private_key.publickey()
+#Show the real content of the public part to console
+print(public_key.exportKey())
+#Save both keys into some file for future usage if needed
+with open("rsa.pub", "w") as pub_file:
+    pub_file.write(public_key.exportKey())
+with open("rsa.pvt", "w") as pvt_file:
+    pvt_file.write(private_key.exportKey())
+
+// PART II - Usage
+rsaKey=RSA.importKey(open("./rsa.pub", 'r'))
+print rsaKey.exportKey()
+pkcs1CipherTmp=PKCS1_OAEP.new(rsaKey)
+password=pkcs1CipherTmp.encrypt("Mihail".encode('utf-8')).encode('base64')
+rsaKey=RSA.importKey(open("./rsa.pvt", 'r'))
+pkcs1CipherTmp=PKCS1_OAEP.new(rsaKey)
+decryptedString=pkcs1CipherTmp.decrypt(password)
+print password
