@@ -56,9 +56,27 @@
      req.send();
  }
                 }
+				
+				
+				getCurrentCompanies () {
+                    var me = this;
+                    request('http://127.0.0.1:8000/getAllCompanies',function (error, response, body) {
+    //                  console.log('error:', error); // Print the error if one occurred
+      //                console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+                      var info= JSON.parse(body);
+                      var lista=[];
+                      for(var i=0;i< info.length;i++){
+                          lista.push(info[i]);
+  //                      console.log(info[i]);
+                      }
+//                     console.log(lista);
+                       me.setState({companies: lista});
+                       });
+                }
 
                 componentDidMount(){
                   this.getCurrentDataCenters();
+				  this.getCurrentCompanies();
                 }
 				
 				createVAMaster(){
@@ -71,8 +89,10 @@
 				   var username=document.getElementById("username").value;
 				   var password=document.getElementById("password").value;
 				   var vpnport=document.getElementById("vpnport").value;
-				   var company=document.getElementById("company").value;
-				   var dataCenter=document.getElementById("dataCenter").value;
+				   var e1=document.getElementById("company");
+				   var company=e1.options[e1.selectedIndex].text;
+				   var e2=document.getElementById("dataCenter");
+				   var dataCenter=e2.options[e2.selectedIndex].text;
 		           if(file==undefined){
 		             alert('Insert a public key for encryption!!!');
 	               }
@@ -92,6 +112,18 @@
 						var key_public = new NodeRSA(text);
 		                var encrypted = key_public.encrypt(password, 'base64');
 						console.log(encrypted);
+						var xhr = new XMLHttpRequest();
+                        xhr.open("POST", 'http://127.0.0.1:8000/addVAMaster/', true);
+
+//Send the proper header information along with the request
+xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+xhr.onreadystatechange = function() {//Call a function when the state changes.
+    if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+        // Request finished. Do processing here
+     }
+}
+xhr.send("domain="+domain+"&url="+url+"&ip="+ip+"&username="+username+"&password="+encrypted+"&vpnport="+vpnport+"&company="+company+"&dataCenter="+dataCenter+"&publickey="+publickey);
  		             }
 		      //reader.readAsText('C:\Users\mnace\Desktop\Model.txt', 'utf8');
 	          reader.readAsText(file);
@@ -101,7 +133,22 @@
 
                render(){
 
-                    return (
+                    console.log(this.state.dataCenters);
+					console.log(this.state.companies);
+					
+					var company_options=this.state.companies.map(function(company){
+                        return (
+                            <option value="{company.fields.Name}">{company.fields.Name}</option>
+                        );
+                    }.bind(this));
+					
+					var dataCenter_options=this.state.dataCenters.map(function(dataCenter){
+                        return (
+                            <option value="{dataCenter.Name}">{dataCenter.Name}</option>
+                        );
+                    }.bind(this));
+					
+					return (
                         <div>
                          <SideBar className="col-md-3"/>
                         <div className="col-md-offset-4 col-md-7">
@@ -144,17 +191,15 @@
 						   
 						   <Bootstrap.FormGroup controlId="company">
 							  <Bootstrap.ControlLabel>Company</Bootstrap.ControlLabel>
-							  <Bootstrap.FormControl componentClass="select" placeholder="select company">
-								<option value="Company No.1">Company No.1</option>
-								<option value="Company No.2">Company No.2</option>
+							  <Bootstrap.FormControl componentClass="select" placeholder="select company" onChange={(e) => this.setState({ value: e.target.value })}>
+							  {company_options}
 						      </Bootstrap.FormControl>
                            </Bootstrap.FormGroup>
 						   
 						   <Bootstrap.FormGroup controlId="dataCenter">
 							  <Bootstrap.ControlLabel>DataCenter</Bootstrap.ControlLabel>
 							  <Bootstrap.FormControl componentClass="select" placeholder="select dataCenter">
-								<option value="DataCenter No.1">DataCenter No.1</option>
-								<option value="DataCenter No.2">DataCenter No.2</option>
+							  {dataCenter_options}
 						      </Bootstrap.FormControl>
                            </Bootstrap.FormGroup>
 						   
