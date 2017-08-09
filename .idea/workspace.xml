@@ -2,15 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="52602ec6-c724-4f5f-8dcf-288d5b9404a2" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/VAManagementDashboardProject/static/ShowVAMasters.js.save" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VAManagementDashboardProject/db.sqlite3" afterPath="$PROJECT_DIR$/VAManagementDashboardProject/db.sqlite3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VAManagementDashboardProject/VAManagementDashboardProject/settings.py" afterPath="$PROJECT_DIR$/VAManagementDashboardProject/VAManagementDashboardProject/settings.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VAManagementDashboardProject/app/urls.py" afterPath="$PROJECT_DIR$/VAManagementDashboardProject/app/urls.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VAManagementDashboardProject/app/views.py" afterPath="$PROJECT_DIR$/VAManagementDashboardProject/app/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VAManagementDashboardProject/rsa.pub" afterPath="$PROJECT_DIR$/VAManagementDashboardProject/rsa.pub" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VAManagementDashboardProject/rsa.pvt" afterPath="$PROJECT_DIR$/VAManagementDashboardProject/rsa.pvt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VAManagementDashboardProject/static/AddVAMaster.js" afterPath="$PROJECT_DIR$/VAManagementDashboardProject/static/AddVAMaster.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VAManagementDashboardProject/static/Login.js" afterPath="$PROJECT_DIR$/VAManagementDashboardProject/static/Login.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VAManagementDashboardProject/static/bundle.js" afterPath="$PROJECT_DIR$/VAManagementDashboardProject/static/bundle.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -52,19 +47,51 @@
         <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
       </PATH_ELEMENT>
     </PATH>
+    <PATH>
+      <PATH_ELEMENT>
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="db.sqlite3" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="main" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="auth_user" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+    </PATH>
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="AddVAMaster.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AddVAMaster.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/VAManagementDashboardProject/static/AddVAMaster.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="323">
-              <caret line="156" column="67" lean-forward="false" selection-start-line="156" selection-start-column="67" selection-end-line="156" selection-end-column="67" />
+              <caret line="157" column="67" lean-forward="false" selection-start-line="157" selection-start-column="67" selection-end-line="157" selection-end-column="67" />
               <folding>
-                <element signature="e#0#40#0" expanded="false" />
-                <marker date="1502035286323" expanded="true" signature="8787:8863" ph="{...}" />
+                <marker date="1502198851218" expanded="true" signature="8850:8926" ph="{...}" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.auth_user" pinned="false" current-in-tab="true">
+        <entry file="dbDummy://dbtable:/c288199f/90f31718-a355-4262-adc2-a3edef8a2591/main.auth_user">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -108,7 +135,6 @@
   </component>
   <component name="NodeModulesDirectoryManager">
     <handled-path value="$PROJECT_DIR$/VAManagementDashboardProject/static/node_modules" />
-    <handled-path value="$PROJECT_DIR$/VAManagementDashboardProject/staticfiles/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
@@ -132,6 +158,7 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -196,7 +223,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -425,8 +451,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#40#0" expanded="false" />
-            <marker date="1502035286323" expanded="true" signature="8787:8863" ph="{...}" />
+            <marker date="1502198851218" expanded="true" signature="8850:8926" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -444,8 +469,25 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#40#0" expanded="false" />
-            <marker date="1502035286323" expanded="true" signature="8787:8863" ph="{...}" />
+            <marker date="1502198851218" expanded="true" signature="8850:8926" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VAManagementDashboardProject/static/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="26" lean-forward="false" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VAManagementDashboardProject/static/AddVAMaster.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1502198851218" expanded="true" signature="8850:8926" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -561,7 +603,6 @@
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -569,18 +610,29 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/VAManagementDashboardProject/static/AddVAMaster.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
-          <caret line="156" column="67" lean-forward="false" selection-start-line="156" selection-start-column="67" selection-end-line="156" selection-end-column="67" />
+          <caret line="157" column="67" lean-forward="false" selection-start-line="157" selection-start-column="67" selection-end-line="157" selection-end-column="67" />
           <folding>
-            <element signature="e#0#40#0" expanded="false" />
-            <marker date="1502035286323" expanded="true" signature="8787:8863" ph="{...}" />
+            <marker date="1502198851218" expanded="true" signature="8850:8926" ph="{...}" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/c288199f/90f31718-a355-4262-adc2-a3edef8a2591/main.auth_user">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

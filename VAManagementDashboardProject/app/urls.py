@@ -6,7 +6,8 @@ from . import views
 
 urlpatterns=[
 
-    url(r'^getAllCompanies/$',views.get_all_companies,name='getAllCompanies'),
+    url(r'^login/$', views.sign_in, name='login'),
+	url(r'^getAllCompanies/$',views.get_all_companies,name='getAllCompanies'),
     url(r'^deleteCompany/$', views.delete_company, name='deleteCompany'),
     url(r'^deleteDataCenter/$', views.delete_data_center, name='deleteDataCenter'),
     url(r'^deleteVAMaster/$', views.delete_va_master, name='deleteVAMaster'),

@@ -18,7 +18,7 @@ var App = React.createClass({
    return (
        <Router.HashRouter>
            <div>
-               <Router.Route exact path='/' component={Main}>
+               <Router.Route exact path='/' component={Login}>
                {/*<Router.IndexRoute component={Overview} />*/}
                {/*<Router.Route path='/hosts' component={Hosts} />*/}
             </Router.Route>
@@ -34,7 +34,7 @@ var App = React.createClass({
             <Router.Route path='/AddVAMaster' component={AddVAMaster}>
             </Router.Route>
 
-            <Router.Route path='/Login' component={Login}>
+            <Router.Route path='/Main' component={Main}>
             </Router.Route>
 
             </div>

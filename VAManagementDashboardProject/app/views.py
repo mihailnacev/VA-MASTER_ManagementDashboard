@@ -12,6 +12,7 @@ from rest_framework.decorators import parser_classes
 from rest_framework.parsers import JSONParser
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 #import rsa
 #import Crypto
 #from Crypto.Cipher import AES
@@ -104,4 +105,12 @@ def get_all_VAMasters(request):
         data_json.append(response_record)
     data = json.dumps(data_json)
     return HttpResponse(data, 'application/json')
+def sign_in(request):
+    uname=request.GET.get('username', '')
+    password=request.GET.get('password', '')
+    user=User.objects.filter(username=uname)
+    if not user:
+        return HttpResponse("Unsuccessful_sign_in")
+    else:
+        return HttpResponse("Successful_sign_in")
 
