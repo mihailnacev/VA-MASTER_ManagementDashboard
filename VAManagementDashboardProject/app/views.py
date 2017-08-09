@@ -87,5 +87,21 @@ def get_dataCenter(request,dataCenter_id):
    dataCenter= json.dumps(dataCenter)
    return JsonResponse(dataCenter, safe=False)
 def get_all_VAMasters(request):
-    data=serializers.serialize('json', VAMaster.objects.all().select_related('Company'))
-    return HttpResponse(data,content_type='application/json')
+    #data=serializers.serialize('json', VAMaster.objects.all().select_related('Company'))
+    #return HttpResponse(data,content_type='application/json')
+    data_json=[]
+    for va in VAMaster.objects.all():
+        #data_json.append(json.dumps(va.to_json()))
+        response_record={}
+        response_record['Domain']=va.Domain
+        response_record['URL']=va.URL
+        response_record['InternalIP']=va.InternalIP
+        response_record['Username']=va.Username
+        response_record['Password']=va.Password
+        response_record['VPNPort']=va.VPNPort
+        response_record['Company']="Name: "+va.Company.Name
+        response_record['DataCenter']="Name: "+va.DataCenter.Name
+        data_json.append(response_record)
+    data = json.dumps(data_json)
+    return HttpResponse(data, 'application/json')
+

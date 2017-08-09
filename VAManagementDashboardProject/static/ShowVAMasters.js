@@ -21,9 +21,10 @@
 
                 constructor(){
                     super();
-                    this.state={VAMasters:[], showModal: false};
+                    this.state={VAMasters:[], showModal: false, password: ''};
 		            this.deleteVA=this.deleteVA.bind(this);
                     this.decrypt=this.decrypt.bind(this);
+					this.close=this.close.bind(this);
                 }
 
 
@@ -45,7 +46,7 @@
                       //console.log(info[0]);
                      var  lista=[];
                      for(var i=0;i< info.length;i++){
-                        lista.push(info[i].fields);
+                        lista.push(info[i]);
                      //  console.log(info[i].fields);
                      }
                     // console.log(lista);
@@ -95,7 +96,8 @@
 		  //var file = document.getElementById("picker").files[0];
 		  var file=document.getElementsByClassName("picker")[b].files[0];
 		  if(file==undefined){
-		    alert('Insert a private key for decryption!!!');
+		    //alert('Insert a private key for decryption!!!');
+			me.setState({message: 'Insert a private key for decryption!!!'});
 	          }
 		  else{
 		  var reader=new FileReader()
@@ -108,9 +110,11 @@
                      var decrypted=key_private.decrypt(c, 'utf8');
                      console.log("Decrypted password: ");
 		     console.log(decrypted);
-	             alert("Decrypted password: " + decrypted);
+	             //alert("Decrypted password: " + decrypted);
+				 me.setState({message: 'Decrypted password: '+decrypted});
 		     }
-		     catch(err){alert('Incorrect private key!!!');}
+		     catch(err){//alert('Incorrect private key!!!'); 
+			 me.setState({message: 'Incorrect private key !'}); }
  		  }
 		  //reader.readAsText('C:\Users\mnace\Desktop\Model.txt', 'utf8');
 	          reader.readAsText(file);
@@ -205,11 +209,11 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
                     return (
                         <div>
                          <SideBar className="col-md-3"/>
-                        <div className="col-md-offset-4 col-md-7">
+                        <div className="col-md-offset-4 col-md-4">
 						<br/>
-					   <Bootstrap.Button className="col-md-offset-9" type="button" bsStyle='success' bsSize="medium" onClick={this.redirect}><span className="glyphicon glyphicon-plus"> ADD_VAMASTER</span></Bootstrap.Button>
+					   <Bootstrap.Button type="button" bsStyle='success' bsSize="medium" onClick={this.redirect}><span className="glyphicon glyphicon-plus"> ADD_VAMASTER</span></Bootstrap.Button>
                        <Bootstrap.PageHeader>Show VAMasters</Bootstrap.PageHeader>
-                        <Bootstrap.Table striped bordered hover>
+                        <Bootstrap.Table striped bordered hover className="table">
                 <thead>
                     <tr>
                     <td>Domain</td>
@@ -229,6 +233,19 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
                     {rows}
                 </tbody>
             </Bootstrap.Table>
+			
+			<Bootstrap.Modal show={this.state.showModal} onHide={this.close}>
+          <Bootstrap.Modal.Header closeButton>
+            <Bootstrap.Modal.Title>Decryption Status</Bootstrap.Modal.Title>
+          </Bootstrap.Modal.Header>
+          <Bootstrap.Modal.Body>
+            <p>{this.state.message}</p>
+            <hr />
+          </Bootstrap.Modal.Body>
+          <Bootstrap.Modal.Footer>
+            <Bootstrap.Button onClick={this.close}>Close</Bootstrap.Button>
+          </Bootstrap.Modal.Footer>
+        </Bootstrap.Modal>
                         </div>
                     </div>);
                }

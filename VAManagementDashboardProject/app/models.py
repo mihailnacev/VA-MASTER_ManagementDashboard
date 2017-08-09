@@ -121,3 +121,15 @@ class VAMaster(models.Model):
     #Company=models.OneToOneField(Company,null=True,on_delete=models.SET_NULL)
     Company=models.ForeignKey('Company',null=True,on_delete=models.SET_NULL)
     DataCenter=models.ForeignKey('DataCenter',null=True)
+	
+    def to_json(self):
+        return {
+            "Domain": self.Domain,
+            "URL": self.URL,
+            "InternalIP": self.InternalIP,
+            "Username": self.Username,
+            "Password": self.Password,
+            "VPNPort": self.VPNPort,
+            "Company":self.Company.Name,
+            "DataCenter": self.DataCenter.Name
+        }

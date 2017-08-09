@@ -9,6 +9,7 @@
     "babelify": "^7.3.0",
     "bootstrap": "^3.3.7",
     "browserify": "^14.4.0",
+    "buffer": "^5.0.7",
     "classnames": "^2.2.5",
     "cors": "^2.8.3",
     "express": "^4.15.3",

@@ -18,3 +18,26 @@
 .modal-container .modal, .modal-container .modal-backdrop {
   position: absolute;
 }
+
+.half-width {
+	word-wrap: break-word;         /* All browsers since IE 5.5+ */
+    overflow-wrap: break-word;     /* Renamed property in CSS3 draft spec */
+	text-align: center;
+	vertical-align: bottom;
+}
+
+table {
+    //table-layout: fixed;
+}
+
+table td {
+	//vertical-align: bottom;
+	//word-wrap: break-word;         /* All browsers since IE 5.5+ */
+    //overflow-wrap: break-word;     /* Renamed property in CSS3 draft spec */
+	text-align: center;
+}
+
+.expand {
+	width: 2300px;
+}
+
