@@ -21,10 +21,11 @@
 
                 constructor(){
                     super();
-                    this.state={VAMasters:[], showModal: false, password: ''};
+                    this.state={VAMasters:[], showModal: false, password: '', index: ''};
 		            this.deleteVA=this.deleteVA.bind(this);
                     this.decrypt=this.decrypt.bind(this);
 					this.close=this.close.bind(this);
+					this.modal=this.modal.bind(this);
                 }
 
 
@@ -85,16 +86,20 @@
                    //       "Address":"Address3"}
                  // ]});
                  }
+		modal(pwd, i) {
+			var me=this;
+			me.setState({showModal: true, password: pwd, index: i});
+		}
 		
 		close(){
-		  this.setState({ showModal: false});
+		  this.setState({ showModal: false, password:'', index:'', message:''});
 		}
-                decrypt(e,c,b){
+                decrypt(password, index){
                   var me=this;
-                  me.setState({showModal: true});
+                 // me.setState({showModal: true});
                   //console.log(e);
 		  //var file = document.getElementById("picker").files[0];
-		  var file=document.getElementsByClassName("picker")[b].files[0];
+		  var file=document.getElementsByClassName("picker")[0].files[0];
 		  if(file==undefined){
 		    //alert('Insert a private key for decryption!!!');
 			me.setState({message: 'Insert a private key for decryption!!!'});
@@ -107,7 +112,7 @@
 		     try{
                      var key_private=new NodeRSA(text);
 		     //console.log(c);
-                     var decrypted=key_private.decrypt(c, 'utf8');
+                     var decrypted=key_private.decrypt(password, 'utf8');
                      console.log("Decrypted password: ");
 		     console.log(decrypted);
 	             //alert("Decrypted password: " + decrypted);
@@ -133,7 +138,7 @@
 		
 		deleteVA(e){
 		  var me = this;
-		  console.log(e.target.value);
+		  //console.log(e.target.value);
                   var xhr = new XMLHttpRequest();
 	          xhr.open("POST", 'http://127.0.0.1:8000/deleteVAMaster/', true);
 
@@ -147,7 +152,7 @@ xhr.onreadystatechange = function() {//Call a function when the state changes.
         me.getCurrentVAMasters();
      }
 }
-xhr.send("domain="+e.target.value);}
+xhr.send("domain="+e);}
 
                 componentDidMount(){
                   this.getCurrentVAMasters()
@@ -194,14 +199,16 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
                             <td>{VAMaster.Domain}</td>
                             <td>{VAMaster.URL}</td>
                             <td>{VAMaster.InternalIP}</td>
-                            <td>{VAMaster.Username}</td>
-                            <td>{VAMaster.Password}</td>                            
+                            <td>{VAMaster.Username}</td>                       
 							<td>{VAMaster.VPNPort}</td>
                             <td>{VAMaster.Company}</td>
                             <td>{VAMaster.DataCenter}</td>
-                    <td><Bootstrap.Button type="button" bsStyle='danger' onClick={this.deleteVA} value={VAMaster.Domain}>Delete</Bootstrap.Button></td>
-                    <td><Bootstrap.Button type="button" bsStyle='primary' onClick={() => this.decrypt(VAMaster, VAMaster.Password, index)}>Decrypt</Bootstrap.Button></td>
-                    <td><input className='picker' id="picker" type="file"/></td>
+				<td>
+	<Bootstrap.DropdownButton bsStyle='primary' title='Action' id='action'>
+      <Bootstrap.MenuItem bsClass='primary' eventKey="1" onClick={() => this.deleteVA(VAMaster.Domain)}>Delete</Bootstrap.MenuItem>
+      <Bootstrap.MenuItem bsClass='primary' eventKey="2" onClick={() => this.modal(VAMaster.Password, index)}>Get password</Bootstrap.MenuItem>
+    </Bootstrap.DropdownButton>
+					</td>
                             </tr>
                         );
                     }.bind(this));
@@ -220,13 +227,10 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
                     <td>URL</td>
                     <td>InternalIP</td>
                     <td>Username</td>
-                    <td>Password</td>
                     <td>VPNPort</td>
-                    <td>Company</td>
-                    <td>Data Center</td>
-                    <td>Delete?</td>
-		            <td>Decrypt password?</td>
-		            <td>BROWSE</td>
+                    <td><a className="item" href="#/Company">Company</a></td>
+                    <td><a className="item" href="#/DataCenter">Data Center</a></td>
+                    <td>Action</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -236,13 +240,18 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
 			
 			<Bootstrap.Modal show={this.state.showModal} onHide={this.close}>
           <Bootstrap.Modal.Header closeButton>
-            <Bootstrap.Modal.Title>Decryption Status</Bootstrap.Modal.Title>
+            <Bootstrap.Modal.Title>Decryption status</Bootstrap.Modal.Title>
           </Bootstrap.Modal.Header>
+
           <Bootstrap.Modal.Body>
-            <p>{this.state.message}</p>
-            <hr />
+			<label for="picker">Insert private key for decryption</label>
+		    <input className='picker' id="picker" type="file"/>
+            <hr/>
+			<p>{this.state.message}</p>
           </Bootstrap.Modal.Body>
+		  
           <Bootstrap.Modal.Footer>
+		    <Bootstrap.Button onClick={() => this.decrypt(this.state.password, this.state.index)}>Confirm</Bootstrap.Button>
             <Bootstrap.Button onClick={this.close}>Close</Bootstrap.Button>
           </Bootstrap.Modal.Footer>
         </Bootstrap.Modal>

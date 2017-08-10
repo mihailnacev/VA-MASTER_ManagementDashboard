@@ -41,55 +41,20 @@
             </li>
 
             <li>
-              <a href="" onClick={(e) => { e.preventDefault(); }} >
-                <span className="glyphicon glyphicon-dashboard" /> &nbsp;Dashboard
+              <a href="#/DataCenter">
+                  <span className="glyphicon glyphicon-align-justify">&nbsp;DataCenters&nbsp;</span>
               </a>
             </li>
-
-            <li className={classNames({ active: !this.state.chartsElementsCollapsed })}>
-              <a
-                href=""
-                onClick={(e) => {
-                  e.preventDefault();
-                  this.setState({ chartsElementsCollapsed: !this.state.chartsElementsCollapsed });
-                  return false;
-                }}
-              >
-                  <span className="glyphicon glyphicon-align-left">&nbsp;Tables&nbsp;</span>
-                <span className="glyphicon glyphicon-arrow-right" />
+			
+			  <li>
+              <a href="#/VAMaster">
+                  <span className="glyphicon glyphicon-align-justify">&nbsp;VAMasters&nbsp;</span>
               </a>
-              <ul
-                className={
-                  classNames({
-                    'nav nav-second-level': true,
-                    collapse: this.state.chartsElementsCollapsed,
-                  })
-              }
-              >
-                <li>
-                  <a href="#/DataCenter">
-                    Data Centers
-                  </a>
-                </li>
-
-                <li>
-                  <a href="#/VAMaster">
-                    VA-Masters
-                  </a>
-                </li>
-
-                  <li>
-                  <a href="#/Company">
-                    Companies
-                  </a>
-                </li>
-
-              </ul>
             </li>
-
-            <li>
-              <a href="" onClick={(e) => { e.preventDefault(); }} >
-                  <span className="glyphicon glyphicon-list">&nbsp;Charts&nbsp;</span>
+			
+			  <li>
+              <a href="#/Company">
+                  <span className="glyphicon glyphicon-align-justify">&nbsp;Companies&nbsp;</span>
               </a>
             </li>
 
