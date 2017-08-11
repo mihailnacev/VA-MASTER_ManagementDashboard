@@ -81,7 +81,8 @@
 				
 				createVAMaster(){
 				   var me=this;
-				   var file=document.getElementById("publickey").files[0];
+				   //var file=document.getElementById("publickey").files[0];
+				   var loggedUser=localStorage.getItem("loggedUser");
 				   var publickey='';
 				   var domain=document.getElementById("domain").value;
 				   var url=document.getElementById("url").value;
@@ -93,14 +94,7 @@
 				   var company=e1.options[e1.selectedIndex].text;
 				   var e2=document.getElementById("dataCenter");
 				   var dataCenter=e2.options[e2.selectedIndex].text;
-		           if(file==undefined){
-		             alert('Insert a public key for encryption!!!');
-	               }
-		         else{
-		             var reader=new FileReader()
-		             reader.onload=function(e){
-		                var text=reader.result;
-						console.log(text);
+
 						console.log(domain);
 						console.log(url);
 						console.log(ip);
@@ -109,10 +103,14 @@
 						console.log(vpnport);
 						console.log(company);
 						console.log(dataCenter);
-						var key_public = new NodeRSA(text);
+						
+						request('http://127.0.0.1:8000/getPublicKey?username='+loggedUser, function (error, response, body) {
+                     //console.log('error:', error); // Print the error if one occurred
+                     //console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+					    var key_public = new NodeRSA(body);
 		                var encrypted = key_public.encrypt(password, 'base64');
 						console.log(encrypted);
-						var xhr = new XMLHttpRequest();
+					    var xhr = new XMLHttpRequest();
                         xhr.open("POST", 'http://127.0.0.1:8000/addVAMaster/', true);
 
 //Send the proper header information along with the request
@@ -124,12 +122,11 @@ xhr.onreadystatechange = function() {//Call a function when the state changes.
 		window.location.replace("http://127.0.0.1:8000/#/VAMaster");
      }
 }
-xhr.send("domain="+domain+"&url="+url+"&ip="+ip+"&username="+username+"&password="+encrypted+"&vpnport="+vpnport+"&company="+company+"&dataCenter="+dataCenter+"&publickey="+publickey);
- 		             }
-		      //reader.readAsText('C:\Users\mnace\Desktop\Model.txt', 'utf8');
-	          reader.readAsText(file);
+xhr.send("domain="+domain+"&url="+url+"&ip="+ip+"&username="+username+"&password="+encrypted+"&vpnport="+vpnport+"&company="+company+"&dataCenter="+dataCenter+"&publickey="+body);
+					 
+		             });
+ 		           
 			  
-           }
 				}
 
                render(){
@@ -178,11 +175,6 @@ xhr.send("domain="+domain+"&url="+url+"&ip="+ip+"&username="+username+"&password
 						   <Bootstrap.FormGroup controlId="password">
 						      <Bootstrap.ControlLabel>Password</Bootstrap.ControlLabel>
 							  <Bootstrap.FormControl type="password" placeholder="Enter password"/> 
-						   </Bootstrap.FormGroup>
-						   
-						   <Bootstrap.FormGroup controlId="publickey">
-						      <Bootstrap.ControlLabel>Import Public Key</Bootstrap.ControlLabel>
-							  <Bootstrap.FormControl type="file" placeholder="Public key ... "/> 
 						   </Bootstrap.FormGroup>
 						   
 						   <Bootstrap.FormGroup controlId="vpnport">

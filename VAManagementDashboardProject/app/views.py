@@ -5,7 +5,7 @@ import json
 from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.core.urlresolvers import reverse
 from django.template import loader
-from .models import Company, DataCenter, VAMaster
+from .models import Company, DataCenter, VAMaster, PublicKey, UserVA
 from django.core import serializers
 from rest_framework.decorators import api_view
 from rest_framework.decorators import parser_classes
@@ -34,7 +34,7 @@ def get_all_companies(request):
 def delete_company(request, format=None):
     if request.method == 'POST':
         name=request.POST.get("name",'')
-        company=Company.objects.get(Name=name)
+        company=Company.objects.filter(Name=name)[0]
     company.delete()
     return HttpResponse("DELETE_COMPANY: SUCCESSFUL")
     #return HttpResponse(request.data)
@@ -73,6 +73,26 @@ def add_va_master(request, format=None):
     va=VAMaster(Domain=domain, URL=url, InternalIP=ip, Username=username, Password=password, VPNPort=vpnport, Company=c, DataCenter=dc);
     va.save();
     return HttpResponse("ADD_VA_MASTER: SUCCESSFUL")
+def register(request, format=None):
+    if request.method=='POST':
+        firstname=request.POST.get("firstname",'')
+        lastname=request.POST.get("lastname",'')
+        email=request.POST.get("email",'')
+        username=request.POST.get("username",'')
+        password=request.POST.get("password",'')
+        publickey=request.POST.get("publickey",'')
+    publickey_part_one=publickey[:27]
+    publickey_part_two=publickey[27:255].replace(" ","+")
+    publickey_part_two= publickey_part_two.replace("\t","+")
+    publickey_part_three = publickey_part_two.replace(" ", "+")
+    publickey_part_three=publickey[255:]
+    publickey=publickey_part_one+publickey_part_two+publickey_part_three
+    password=password.replace(" ","+")
+    pk=PublicKey(Content=publickey)
+    pk.save()
+    user=UserVA(FirstName=firstname, LastName=lastname, Email=email, Username=username, Password=password, PublicKey=pk)
+    user.save()
+    return HttpResponse("REGISTER_USER: SUCCESSFUL")
 def get_company(request,company_id):
     company =  Company.objects.get(pk=company_id).to_json()
     company = json.dumps(company)
@@ -108,9 +128,20 @@ def get_all_VAMasters(request):
 def sign_in(request):
     uname=request.GET.get('username', '')
     password=request.GET.get('password', '')
-    user=User.objects.filter(username=uname)
+    user=UserVA.objects.filter(Username=uname)
     if not user:
         return HttpResponse("Unsuccessful_sign_in")
     else:
-        return HttpResponse("Successful_sign_in")
-
+        found=user[0]
+        if found.Password==password:
+            return HttpResponse("Successful_sign_in")
+        else:
+            return HttpResponse("Unsuccessful_sign_in")
+def get_password(request):
+    uname=request.GET.get('username', '')
+    user=UserVA.objects.filter(Username=uname)[0]
+    return HttpResponse(user.Password)
+def get_public_key(request):
+    uname = request.GET.get('username', '')
+    user = UserVA.objects.get(Username=uname)
+    return HttpResponse(user.PublicKey.Content)

@@ -133,3 +133,14 @@ class VAMaster(models.Model):
             "Company":self.Company.Name,
             "DataCenter": self.DataCenter.Name
         }
+		
+class UserVA(models.Model):
+    FirstName=models.CharField(max_length=50)
+    LastName=models.CharField(max_length=50)
+    Email=models.EmailField()
+    Username=models.CharField(max_length=50)
+    Password=models.CharField(max_length=300)
+    PublicKey=models.OneToOneField('PublicKey',null=True, on_delete=models.SET_NULL)
+
+class PublicKey(models.Model):
+    Content=models.CharField(max_length=500)

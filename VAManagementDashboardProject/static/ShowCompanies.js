@@ -127,7 +127,7 @@
                 }
 deleteComp(e){ 
 console.log(this);
-console.log(e.target.value);
+//console.log(e.target.value);
 //var postData = 'name=Third_Company' ;
 
 //var postData=JSON.parse(postText);
@@ -153,7 +153,7 @@ console.log(e.target.value);
 //});
 var me=this;
 var xhr = new XMLHttpRequest();
-xhr.open("POST", 'http://127.0.0.1:/deleteCompany/', true);
+xhr.open("POST", 'http://127.0.0.1:8000/deleteCompany/', true);
 
 //Send the proper header information along with the request
 xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -164,7 +164,7 @@ xhr.onreadystatechange = function() {//Call a function when the state changes.
         me.getCurrentCompanies();
      }
 }
-xhr.send("name="+e.target.value);
+xhr.send("name="+e);
 this.getCurrentCompanies();
 }
 
@@ -183,7 +183,7 @@ this.getCurrentCompanies();
                                 <td>{company.fields.ContactPerson}</td>
                                 <td>{company.fields.ContactEmail}</td>
                                 <td>{company.fields.ContactNumber}</td>
-                    <td><Bootstrap.Button type="button" bsStyle='primary' onClick={this.deleteComp} value={company.fields.Name}>Delete</Bootstrap.Button></td>
+                    <td><Bootstrap.Button type="button" bsStyle='primary'onClick={() => this.deleteComp(company.fields.Name)}>Delete</Bootstrap.Button></td>
                             </tr>
                         );
                     }.bind(this));
