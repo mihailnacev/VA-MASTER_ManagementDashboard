@@ -13,6 +13,9 @@ from rest_framework.parsers import JSONParser
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.contrib.auth.hashers import make_password
+from django.contrib.auth.hashers import check_password
+
 #import rsa
 #import Crypto
 #from Crypto.Cipher import AES
@@ -88,9 +91,10 @@ def register(request, format=None):
     publickey_part_three=publickey[255:]
     publickey=publickey_part_one+publickey_part_two+publickey_part_three
     password=password.replace(" ","+")
+    hashpass = make_password(password, None, 'default')
     pk=PublicKey(Content=publickey)
     pk.save()
-    user=UserVA(FirstName=firstname, LastName=lastname, Email=email, Username=username, Password=password, PublicKey=pk)
+    user=UserVA(FirstName=firstname, LastName=lastname, Email=email, Username=username, Password=hashpass, PublicKey=pk)
     user.save()
     return HttpResponse("REGISTER_USER: SUCCESSFUL")
 def get_company(request,company_id):
@@ -133,7 +137,7 @@ def sign_in(request):
         return HttpResponse("Unsuccessful_sign_in")
     else:
         found=user[0]
-        if found.Password==password:
+        if check_password(password, found.Password):
             return HttpResponse("Successful_sign_in")
         else:
             return HttpResponse("Unsuccessful_sign_in")

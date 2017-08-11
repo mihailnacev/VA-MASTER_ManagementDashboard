@@ -2,20 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="52602ec6-c724-4f5f-8dcf-288d5b9404a2" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/VAManagementDashboardProject/static/Register.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/dataSources/90f31718-a355-4262-adc2-a3edef8a2591.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VAManagementDashboardProject/db.sqlite3" afterPath="$PROJECT_DIR$/VAManagementDashboardProject/db.sqlite3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VAManagementDashboardProject/app/models.py" afterPath="$PROJECT_DIR$/VAManagementDashboardProject/app/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VAManagementDashboardProject/app/urls.py" afterPath="$PROJECT_DIR$/VAManagementDashboardProject/app/urls.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VAManagementDashboardProject/VAManagementDashboardProject/settings.py" afterPath="$PROJECT_DIR$/VAManagementDashboardProject/VAManagementDashboardProject/settings.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VAManagementDashboardProject/app/views.py" afterPath="$PROJECT_DIR$/VAManagementDashboardProject/app/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VAManagementDashboardProject/static/AddVAMaster.js" afterPath="$PROJECT_DIR$/VAManagementDashboardProject/static/AddVAMaster.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VAManagementDashboardProject/static/Login.js" afterPath="$PROJECT_DIR$/VAManagementDashboardProject/static/Login.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VAManagementDashboardProject/static/ShowCompanies.js" afterPath="$PROJECT_DIR$/VAManagementDashboardProject/static/ShowCompanies.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VAManagementDashboardProject/static/app.js" afterPath="$PROJECT_DIR$/VAManagementDashboardProject/static/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VAManagementDashboardProject/static/bundle.js" afterPath="$PROJECT_DIR$/VAManagementDashboardProject/static/bundle.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -113,27 +103,16 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/VAManagementDashboardProject/app/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="84" column="37" lean-forward="false" selection-start-line="84" selection-start-column="37" selection-end-line="84" selection-end-column="37" />
+            <state relative-caret-position="32">
+              <caret line="117" column="37" lean-forward="true" selection-start-line="117" selection-start-column="37" selection-end-line="117" selection-end-column="37" />
               <folding>
                 <element signature="e#0#45#0" expanded="true" />
-                <marker date="1502450015495" expanded="true" signature="3203:4140" ph="..." />
-                <marker date="1502450015495" expanded="true" signature="4177:4385" ph="..." />
-                <marker date="1502450015495" expanded="true" signature="4419:4589" ph="..." />
-                <marker date="1502450015495" expanded="true" signature="4632:4867" ph="..." />
-                <marker date="1502450015495" expanded="true" signature="4899:5713" ph="..." />
-                <marker date="1502450015495" expanded="true" signature="4904:5052" ph="..." />
-                <marker date="1502450015495" expanded="true" signature="5107:5630" ph="..." />
-                <marker date="1502450015495" expanded="true" signature="5735:6131" ph="..." />
-                <marker date="1502450015495" expanded="true" signature="5948:6131" ph="..." />
-                <marker date="1502450015495" expanded="true" signature="6158:6289" ph="..." />
-                <marker date="1502450015495" expanded="true" signature="6318:6456" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.app_publickey" pinned="false" current-in-tab="false">
+      <file leaf-file-name="main.app_publickey" pinned="false" current-in-tab="true">
         <entry file="dbDummy://dbtable:/c288199f/903db2d7-1af7-46a2-9244-1dbf918b05c8/main.app_publickey">
           <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
             <state>
@@ -148,7 +127,22 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.app_userva" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.app_vamaster" pinned="false" current-in-tab="false">
+        <entry file="dbDummy://dbtable:/c288199f/903db2d7-1af7-46a2-9244-1dbf918b05c8/main.app_vamaster">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.app_userva" pinned="false" current-in-tab="false">
         <entry file="dbDummy://dbtable:/c288199f/903db2d7-1af7-46a2-9244-1dbf918b05c8/main.app_userva">
           <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
             <state>
@@ -519,14 +513,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/VAManagementDashboardProject/app/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2176">
-          <caret line="128" column="42" lean-forward="true" selection-start-line="128" selection-start-column="42" selection-end-line="128" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/VAManagementDashboardProject/static/AddVAMaster.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2669">
@@ -894,28 +880,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/VAManagementDashboardProject/app/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="84" column="37" lean-forward="false" selection-start-line="84" selection-start-column="37" selection-end-line="84" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#45#0" expanded="true" />
-            <marker date="1502450015495" expanded="true" signature="3203:4140" ph="..." />
-            <marker date="1502450015495" expanded="true" signature="4177:4385" ph="..." />
-            <marker date="1502450015495" expanded="true" signature="4419:4589" ph="..." />
-            <marker date="1502450015495" expanded="true" signature="4632:4867" ph="..." />
-            <marker date="1502450015495" expanded="true" signature="4899:5713" ph="..." />
-            <marker date="1502450015495" expanded="true" signature="4904:5052" ph="..." />
-            <marker date="1502450015495" expanded="true" signature="5107:5630" ph="..." />
-            <marker date="1502450015495" expanded="true" signature="5735:6131" ph="..." />
-            <marker date="1502450015495" expanded="true" signature="5948:6131" ph="..." />
-            <marker date="1502450015495" expanded="true" signature="6158:6289" ph="..." />
-            <marker date="1502450015495" expanded="true" signature="6318:6456" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/c288199f/903db2d7-1af7-46a2-9244-1dbf918b05c8/main.app_publickey">
+    <entry file="dbDummy://dbtable:/c288199f/903db2d7-1af7-46a2-9244-1dbf918b05c8/main.app_vamaster">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
@@ -928,7 +893,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/VAManagementDashboardProject/app/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="32">
+          <caret line="117" column="37" lean-forward="true" selection-start-line="117" selection-start-column="37" selection-end-line="117" selection-end-column="37" />
+          <folding>
+            <element signature="e#0#45#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="dbDummy://dbtable:/c288199f/903db2d7-1af7-46a2-9244-1dbf918b05c8/main.app_userva">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/c288199f/903db2d7-1af7-46a2-9244-1dbf918b05c8/main.app_publickey">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
