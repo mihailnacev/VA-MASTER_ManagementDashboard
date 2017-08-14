@@ -12,6 +12,7 @@ var VAMaster=require('./ShowVAMasters');
 var AddVAMaster=require('./AddVAMaster');
 var Login=require('./Login');
 var Register=require('./Register');
+var Navbar=require('./Navbar');
 
 //var Panel2 = require('./new1');
 
@@ -41,6 +42,10 @@ var App = React.createClass({
 
              <Router.Route path='/Register' component={Register}>
             </Router.Route>
+			
+			<Router.Route path='/Navbar' component={Navbar}>
+            </Router.Route>
+
 
             </div>
         </Router.HashRouter>

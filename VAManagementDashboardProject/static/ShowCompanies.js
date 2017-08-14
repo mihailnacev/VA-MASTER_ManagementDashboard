@@ -7,6 +7,7 @@
             var classNames=require('classnames');
             var Icons=require('glyphicons');
             var request=require('request');
+			var Navbar=require('./Navbar');
             var SideBar=require('./Sidebar');
             var str2json=require('string-to-json');
 			var NodeRSA=require('node-rsa');
@@ -20,6 +21,11 @@
 
                 constructor(){
                     super();
+					var user=localStorage.getItem("loggedUser");
+                    if(user==undefined||user=='')
+                    {
+						window.location.replace("http://127.0.0.1:8000/#/");
+					}	
                     this.state={companies:[]};
 		            this.deleteComp = this.deleteComp.bind(this);
                 }
@@ -183,13 +189,14 @@ this.getCurrentCompanies();
                                 <td>{company.fields.ContactPerson}</td>
                                 <td>{company.fields.ContactEmail}</td>
                                 <td>{company.fields.ContactNumber}</td>
-                    <td><Bootstrap.Button type="button" bsStyle='primary'onClick={() => this.deleteComp(company.fields.Name)}>Delete</Bootstrap.Button></td>
+                    <td><Bootstrap.Button type="button" bsStyle='primary' onClick={() => this.deleteComp(company.fields.Name)}>Delete</Bootstrap.Button></td>
                             </tr>
                         );
                     }.bind(this));
 
                     return (
                         <div>
+						 <Navbar/>
                          <SideBar/>
                         <div className="col-md-offset-4 col-md-7">
                        <Bootstrap.PageHeader>Show Companies</Bootstrap.PageHeader>

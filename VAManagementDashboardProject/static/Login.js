@@ -14,6 +14,7 @@ var NodeRSA=require('node-rsa');
 class Login extends React.Component {
 	constructor(){
            super();
+		   var user=localStorage.getItem("loggedUser");	
 		   this.state={};
 		   this.login=this.login.bind(this);
 	}
@@ -90,7 +91,7 @@ class Login extends React.Component {
 	<div className="col-md-4 col-md-offset-4">
         <div className="text-center">
         <h1 className="login-brand-text">Login Page</h1>
-        <h3 className="text-muted">Created by VA-MK team</h3></div>
+        <h3 className="text-primary">Created by VA-MK team</h3></div>
       <Bootstrap.Panel header={<h3>Please Sign In</h3>} className="login-panel">
         
           <fieldset>
@@ -113,7 +114,10 @@ class Login extends React.Component {
 			  </Bootstrap.FormGroup>
             <Bootstrap.Button type="submit" bsSize="large" bsStyle="success" onClick={() => this.login()} block>Login</Bootstrap.Button>
           </fieldset>
+		  
       </Bootstrap.Panel>
+	  
+	   <div> <a href='http://127.0.0.1:8000/#/Register' className="text-primary">Click here to register ...</a> </div>
     </div>);
     }
 }

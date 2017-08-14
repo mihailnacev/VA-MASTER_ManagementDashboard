@@ -6,14 +6,24 @@ var ReactDOM=require('react-dom');
 var Bootstrap=require('react-bootstrap');
 var classNames=require('classnames');
 var SideBar=require('./Sidebar');
-var NavBar=require('./Navbar');
+var Navbar=require('./Navbar');
 var Company=require('./ShowCompanies');
 
 class Main extends React.Component {
-            render() {
+            
+			constructor(){
+                    super();
+                    var user=localStorage.getItem("loggedUser");
+                    if(user==undefined||user=='')
+                    {
+						window.location.replace("http://127.0.0.1:8000/#/");
+					}						
+            }
+			render() {
                 return (
                 <div>
-                    <SideBar class="col-md-offset-3"/>
+                    <Navbar/>
+					<SideBar class="col-md-offset-3"/>
                 </div>);
             }
         }

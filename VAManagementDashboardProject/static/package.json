@@ -15,6 +15,7 @@
     "express": "^4.15.3",
     "fs": "0.0.1-security",
     "glyphicons": "^0.2.0",
+    "imgurify": "^2.0.0",
     "jquery": "^3.2.1",
     "keypair": "^1.0.1",
     "network": "^0.3.2",

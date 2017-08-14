@@ -7,6 +7,7 @@
             var classNames=require('classnames');
             var Icons=require('glyphicons');
             var request=require('request');
+			var Navbar=require('./Navbar');
              var SideBar=require('./Sidebar');
             //var express=require('express');
             //var cors=require('cors');
@@ -17,8 +18,13 @@
 
                 constructor(){
                     super();
+					var user=localStorage.getItem("loggedUser");
+                    if(user==undefined||user=='')
+                    {
+						window.location.replace("http://127.0.0.1:8000/#/");
+					}	
                     this.state={dataCenters:[]};
-		    this.deleteDC=this.deleteDC.bind(this);
+		            this.deleteDC=this.deleteDC.bind(this);
                 }
 
 
@@ -119,6 +125,7 @@ xhr.send("name="+e.target.value);}
 
                     return (
                         <div>
+						<Navbar/>
                          <SideBar className="col-md-3"/>
                         <div className="col-md-offset-4 col-md-7">
                        <Bootstrap.PageHeader>Show DataCenters</Bootstrap.PageHeader>
