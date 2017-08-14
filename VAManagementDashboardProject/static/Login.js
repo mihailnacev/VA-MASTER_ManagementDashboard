@@ -15,11 +15,12 @@ class Login extends React.Component {
 	constructor(){
            super();
 		   var user=localStorage.getItem("loggedUser");	
-		   this.state={};
+		   this.state={message:''};
 		   this.login=this.login.bind(this);
 	}
 	login() {
 		//console.log('Successfull login');
+		var me=this;
 		var username=document.getElementById("username").value;
 		var pwd=document.getElementById("password").value;
 		//console.log(username);
@@ -78,9 +79,11 @@ class Login extends React.Component {
 					  if (body=="Successful_sign_in") {
 						  console.log("Successful_sign_in");
 						  localStorage.setItem("loggedUser", username);
+						  sessionStorage.loggedUser=username;
 						  window.location.replace("http://127.0.0.1:8000/#/Main");
 					  }
 					  else {
+						   me.setState({message: 'Unsuccesful Login: Try again'})
 						   console.log("Unsuccesful Login: Try again");
 					  }
 					 
@@ -116,8 +119,9 @@ class Login extends React.Component {
           </fieldset>
 		  
       </Bootstrap.Panel>
-	  
-	   <div> <a href='http://127.0.0.1:8000/#/Register' className="text-primary">Click here to register ...</a> </div>
+	   <span className="text-danger">{this.state.message}</span>
+	   <br/>
+	   <div className="text-primary"> <a href='http://127.0.0.1:8000/#/Register' className="text-primary">Click here to register ...</a> </div>
     </div>);
     }
 }

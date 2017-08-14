@@ -27,11 +27,14 @@
                     {
 						window.location.replace("http://127.0.0.1:8000/#/");
 					}	
-                    this.state={VAMasters:[], showModal: false, password: '', index: ''};
+                    this.state={VAMasters:[], showModal: false, password: '', index: '', domain:'', showModalDelete: false};
+					this.delete=this.delete.bind(this);
 		            this.deleteVA=this.deleteVA.bind(this);
                     this.decrypt=this.decrypt.bind(this);
 					this.close=this.close.bind(this);
 					this.modal=this.modal.bind(this);
+					this.modalDelete=this.modalDelete.bind(this);
+					this.closeDelete=this.closeDelete.bind(this);
                 }
 
 
@@ -97,19 +100,66 @@
 			me.setState({showModal: true, password: pwd, index: i});
 		}
 		
+		modalDelete(domain,password){
+			var me=this;
+			me.setState({showModalDelete: true, domain: domain, password:password});
+		}
+		
 		close(){
 		  this.setState({ showModal: false, password:'', index:'', message:''});
 		}
-                decrypt(password, index){
+		
+		closeDelete(){
+		  this.setState({ showModalDelete: false, message:''});
+		}
+		
+		delete(domain, password){
+			var me=this;
+			var file=document.getElementsByClassName("pickerdelete")[0].files[0];
+		  
+		  if(file==undefined){
+		    //alert('Insert a private key for decryption!!!');
+			me.setState({message: 'Insert a private key!!!'});
+	          }
+		  else{
+		  var reader=new FileReader()
+		  reader.onload=function(e){
+		     var text=reader.result;
+		     //console.log(text);
+		     try{
+                     var key_private=new NodeRSA(text);
+		     //console.log(c);
+                     var decrypted=key_private.decrypt(password, 'utf8');
+                     console.log("Decrypted password: ");
+		     //console.log(decrypted);
+	             //alert("Decrypted password: " + decrypted);
+				 me.setState({message: 'Public-private key correspondate'});
+				 if(me.state.message=='Public-private key correspondate'){
+			console.log(domain);
+			me.deleteVA(domain);
+			me.setState({showModalDelete: false, message:''});
+			}
+		     }
+		     catch(err){//alert('Incorrect private key!!!'); 
+			 me.setState({message: 'Incorrect private key !'}); }
+ 		  }
+		  //reader.readAsText('C:\Users\mnace\Desktop\Model.txt', 'utf8');
+	          reader.readAsText(file);
+                }
+		}
+		
+        
+		decrypt(password, index){
                   var me=this;
                  // me.setState({showModal: true});
                   //console.log(e);
 		  //var file = document.getElementById("picker").files[0];
 		  var file=document.getElementsByClassName("picker")[0].files[0];
+		  
 		  if(file==undefined){
 		    //alert('Insert a private key for decryption!!!');
 			me.setState({message: 'Insert a private key for decryption!!!'});
-	          }
+	      }
 		  else{
 		  var reader=new FileReader()
 		  reader.onload=function(e){
@@ -211,7 +261,7 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
                             <td>{VAMaster.DataCenter}</td>
 				<td>
 	<Bootstrap.DropdownButton bsStyle='primary' title='Action' id='action'>
-      <Bootstrap.MenuItem bsClass='primary' eventKey="1" onClick={() => this.deleteVA(VAMaster.Domain)}>Delete</Bootstrap.MenuItem>
+      <Bootstrap.MenuItem bsClass='primary' eventKey="1" onClick={() => this.modalDelete(VAMaster.Domain, VAMaster.Password)}>Delete</Bootstrap.MenuItem>
       <Bootstrap.MenuItem bsClass='primary' eventKey="2" onClick={() => this.modal(VAMaster.Password, index)}>Get password</Bootstrap.MenuItem>
     </Bootstrap.DropdownButton>
 					</td>
@@ -260,6 +310,24 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
           <Bootstrap.Modal.Footer>
 		    <Bootstrap.Button onClick={() => this.decrypt(this.state.password, this.state.index)}>Confirm</Bootstrap.Button>
             <Bootstrap.Button onClick={this.close}>Close</Bootstrap.Button>
+          </Bootstrap.Modal.Footer>
+        </Bootstrap.Modal>
+		
+		<Bootstrap.Modal show={this.state.showModalDelete} onHide={this.closeDelete}>
+          <Bootstrap.Modal.Header closeButton>
+            <Bootstrap.Modal.Title>Deletion status</Bootstrap.Modal.Title>
+          </Bootstrap.Modal.Header>
+
+          <Bootstrap.Modal.Body>
+			<label for="pickerdelete">Insert private key</label>
+		    <input className='pickerdelete' id="pickerdelete" type="file"/>
+            <hr/>
+			<p>{this.state.message}</p>
+          </Bootstrap.Modal.Body>
+		  
+          <Bootstrap.Modal.Footer>
+		    <Bootstrap.Button onClick={() => this.delete(this.state.domain, this.state.password)}>Confirm</Bootstrap.Button>
+            <Bootstrap.Button onClick={this.closeDelete}>Close</Bootstrap.Button>
           </Bootstrap.Modal.Footer>
         </Bootstrap.Modal>
                         </div>

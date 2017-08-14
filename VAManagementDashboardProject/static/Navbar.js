@@ -19,6 +19,7 @@
 			
 			logOut() {
 				localStorage.removeItem("loggedUser");
+				sessionStorage.removeItem("loggedUser");
 				window.location.replace("http://127.0.0.1:8000/#/");
 			}
 			
