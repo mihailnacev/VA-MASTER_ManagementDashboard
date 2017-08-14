@@ -5,7 +5,7 @@ import json
 from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.core.urlresolvers import reverse
 from django.template import loader
-from .models import Company, DataCenter, VAMaster, PublicKey, UserVA
+from .models import Company, DataCenter, VAMaster, PublicKey, UserVA, Token
 from django.core import serializers
 from rest_framework.decorators import api_view
 from rest_framework.decorators import parser_classes
@@ -15,6 +15,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.hashers import check_password
+import uuid
 
 #import rsa
 #import Crypto
@@ -138,9 +139,21 @@ def sign_in(request):
     else:
         found=user[0]
         if check_password(password, found.Password):
-            return HttpResponse("Successful_sign_in")
+            token=str(uuid.uuid4())
+            tokenSave=Token(Content=token, User=user[0])
+            tokenSave.save()
+            return HttpResponse(tokenSave.Content)
         else:
             return HttpResponse("Unsuccessful_sign_in")
+def delete_token(request):
+    content=request.POST.get("content",'')
+    token=Token.objects.get(Content=content)
+    token.delete()
+    return HttpResponse("DELETE_TOKEN: SUCCESSFUL")
+def get_username_per_token(request):
+    value=request.GET.get("token")
+    token=Token.objects.get(Content=value)
+    return HttpResponse(token.User.Username)
 def get_password(request):
     uname=request.GET.get('username', '')
     user=UserVA.objects.filter(Username=uname)[0]

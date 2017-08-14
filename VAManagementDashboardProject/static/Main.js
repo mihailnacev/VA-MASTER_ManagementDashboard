@@ -13,7 +13,7 @@ class Main extends React.Component {
             
 			constructor(){
                     super();
-                    var user=localStorage.getItem("loggedUser");
+                    var user=localStorage.getItem("token");
                     if(user==undefined||user=='')
                     {
 						window.location.replace("http://127.0.0.1:8000/#/");

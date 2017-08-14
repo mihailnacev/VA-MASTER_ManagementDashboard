@@ -20,7 +20,7 @@
 
                 constructor(){
                     super();
-					var user=localStorage.getItem("loggedUser");
+					var user=localStorage.getItem("token");
                     if(user==undefined||user=='')
                     {
 						window.location.replace("http://127.0.0.1:8000/#/");
@@ -88,7 +88,7 @@
 				createVAMaster(){
 				   var me=this;
 				   //var file=document.getElementById("publickey").files[0];
-				   var loggedUser=localStorage.getItem("loggedUser");
+				  // var loggedUser=localStorage.getItem("loggedUser");
 				   var publickey='';
 				   var domain=document.getElementById("domain").value;
 				   var url=document.getElementById("url").value;
@@ -109,7 +109,11 @@
 						console.log(vpnport);
 						console.log(company);
 						console.log(dataCenter);
-						
+						request('http://127.0.0.1:8000/getUsername?token='+localStorage.getItem("token"), function (error, response, body) {
+                     //console.log('error:', error); // Print the error if one occurred
+                     //console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was receive
+							var loggedUser=body;
+
 						request('http://127.0.0.1:8000/getPublicKey?username='+loggedUser, function (error, response, body) {
                      //console.log('error:', error); // Print the error if one occurred
                      //console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
@@ -131,6 +135,8 @@ xhr.onreadystatechange = function() {//Call a function when the state changes.
 xhr.send("domain="+domain+"&url="+url+"&ip="+ip+"&username="+username+"&password="+encrypted+"&vpnport="+vpnport+"&company="+company+"&dataCenter="+dataCenter+"&publickey="+body);
 					 
 		             });
+
+						});
  		           
 			  
 				}

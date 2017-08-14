@@ -144,3 +144,7 @@ class UserVA(models.Model):
 
 class PublicKey(models.Model):
     Content=models.CharField(max_length=500)
+
+class Token(models.Model):
+    Content=models.CharField(max_length=500)
+    User=models.OneToOneField('UserVA',null=True, on_delete=models.SET_NULL)
