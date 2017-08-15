@@ -52,7 +52,7 @@
 		                var encrypted = key_public.encrypt(password, 'base64');
 						console.log(encrypted);
 						var xhr = new XMLHttpRequest();
-                        xhr.open("POST", 'http://127.0.0.1:8000/register/', true);
+                        xhr.open("POST", '/register/', true);
 
 //Send the proper header information along with the request
 xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");

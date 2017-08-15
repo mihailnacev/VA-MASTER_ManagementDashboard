@@ -109,19 +109,19 @@
 						console.log(vpnport);
 						console.log(company);
 						console.log(dataCenter);
-						request('http://127.0.0.1:8000/getUsername?token='+localStorage.getItem("token"), function (error, response, body) {
+						request('/getUsername?token='+localStorage.getItem("token"), function (error, response, body) {
                      //console.log('error:', error); // Print the error if one occurred
                      //console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was receive
 							var loggedUser=body;
 
-						request('http://127.0.0.1:8000/getPublicKey?username='+loggedUser, function (error, response, body) {
+						request('/getPublicKey?username='+loggedUser, function (error, response, body) {
                      //console.log('error:', error); // Print the error if one occurred
                      //console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
 					    var key_public = new NodeRSA(body);
 		                var encrypted = key_public.encrypt(password, 'base64');
 						console.log(encrypted);
 					    var xhr = new XMLHttpRequest();
-                        xhr.open("POST", 'http://127.0.0.1:8000/addVAMaster/', true);
+                        xhr.open("POST", '/addVAMaster/', true);
 
 //Send the proper header information along with the request
 xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -129,7 +129,7 @@ xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 xhr.onreadystatechange = function() {//Call a function when the state changes.
     if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
         // Request finished. Do processing here
-		window.location.replace("http://127.0.0.1:8000/#/VAMaster");
+		window.location.replace("/#/VAMaster");
      }
 }
 xhr.send("domain="+domain+"&url="+url+"&ip="+ip+"&username="+username+"&password="+encrypted+"&vpnport="+vpnport+"&company="+company+"&dataCenter="+dataCenter+"&publickey="+body);

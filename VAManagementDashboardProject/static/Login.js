@@ -73,7 +73,7 @@ class Login extends React.Component {
 			console.log("Unsupported local storage");
         }
 		 
-		 request('http://127.0.0.1:8000/login?username='+username+"&password="+pwd, function (error, response, body) {
+		 request('/login?username='+username+"&password="+pwd, function (error, response, body) {
                      //console.log('error:', error); // Print the error if one occurred
                      //console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
 					  if (body=="Unsuccessful_sign_in") {
@@ -86,7 +86,7 @@ class Login extends React.Component {
 						  //localStorage.setItem("loggedUser", username);
 						  localStorage.setItem("token", body);
 						  //sessionStorage.loggedUser=username;
-						  window.location.replace("http://127.0.0.1:8000/#/Main");
+						  window.location.replace("/#/Main");
 					  }
 					 
 		 });
