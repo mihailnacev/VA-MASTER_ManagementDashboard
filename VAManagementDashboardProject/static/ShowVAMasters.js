@@ -25,7 +25,7 @@
 					var user=localStorage.getItem("token");
                     if(user==undefined||user=='')
                     {
-						window.location.replace("http://127.0.0.1:8000/#/");
+						window.location.replace("/#/");
 					}	
                     this.state={VAMasters:[], showModal: false, password: '', index: '', domain:'', showModalDelete: false};
 					this.delete=this.delete.bind(this);
@@ -43,7 +43,7 @@
                      var me=this;
                      // Feature detection for CORS
                      if ('withCredentials' in req) {
-                     req.open('GET','http://127.0.0.1:8000/getAllVAMasters', true);
+                     req.open('GET','/getAllVAMasters', true);
                      req.setRequestHeader('Content-Type', 'application/json');
                     // req.setRequestHeader('Access-Control-Allow-Origin', 'http://localhost:8080');
                      // Just like regular ol' XHR
@@ -189,14 +189,14 @@
                 }
 				
 		redirect(){
-			window.location.replace("http://127.0.0.1:8000/#/AddVAMaster");
+			window.location.replace("/#/AddVAMaster");
 		}
 		
 		deleteVA(e){
 		  var me = this;
 		  //console.log(e.target.value);
                   var xhr = new XMLHttpRequest();
-	          xhr.open("POST", 'http://127.0.0.1:8000/deleteVAMaster/', true);
+	          xhr.open("POST", '/deleteVAMaster/', true);
 
 //Send the proper header information along with the request
 xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");

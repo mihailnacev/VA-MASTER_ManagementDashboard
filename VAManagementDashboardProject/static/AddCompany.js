@@ -24,7 +24,7 @@
 					var user=localStorage.getItem("token");
                     if(user==undefined||user=='')
                     {
-						window.location.replace("http://127.0.0.1:8000/#/");
+						window.location.replace("/#/");
 					}
                     this.state={};
 					this.createCompany=this.createCompany.bind(this);
@@ -50,7 +50,7 @@
 						console.log(contactemail);
 						console.log(contactnumber);
 
-                        xhr.open("POST", 'http://127.0.0.1:8000/addCompany/', true);
+                        xhr.open("POST", '/addCompany/', true);
 
 //Send the proper header information along with the request
 xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -58,7 +58,7 @@ xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 xhr.onreadystatechange = function() {//Call a function when the state changes.
     if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
         // Request finished. Do processing here
-		window.location.replace("http://127.0.0.1:8000/#/Company");
+		window.location.replace("/#/Company");
      }
 }
 xhr.send("name="+name+"&description="+description+"&address="+address+"&contactemail="+contactemail+"&contactnumber="+contactnumber);

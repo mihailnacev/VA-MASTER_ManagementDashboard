@@ -24,7 +24,7 @@
 					var user=localStorage.getItem("token");
                     if(user==undefined||user=='')
                     {
-						window.location.replace("http://127.0.0.1:8000/#/");
+						window.location.replace("/#/");
 					}	
                     this.state={companies:[]};
 		            this.deleteComp = this.deleteComp.bind(this);
@@ -104,7 +104,7 @@
 			// }).catch(function(err){
             //
 			// });
-                    request('http://127.0.0.1:8000/getAllCompanies',function (error, response, body) {
+                    request('/getAllCompanies',function (error, response, body) {
     //                  console.log('error:', error); // Print the error if one occurred
       //                console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
                       var info= JSON.parse(body);
@@ -116,7 +116,7 @@
 //                     console.log(lista);
                        me.setState({companies: lista});
                        });
-                  // jquery.getJSON("http://127.0.0.1:8000/app/getAllCompanies", function( data ) {
+                  // jquery.getJSON("/app/getAllCompanies", function( data ) {
                   //       me.setState({companies: data});
                   //   });
                   //me.setState({companies: [
@@ -159,7 +159,7 @@ console.log(this);
 //});
 var me=this;
 var xhr = new XMLHttpRequest();
-xhr.open("POST", 'http://127.0.0.1:8000/deleteCompany/', true);
+xhr.open("POST", '/deleteCompany/', true);
 
 //Send the proper header information along with the request
 xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");

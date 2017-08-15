@@ -123,7 +123,7 @@ class Login extends React.Component {
       </Bootstrap.Panel>
 	   <span className="text-danger">{this.state.message}</span>
 	   <br/>
-	   <div className="text-primary"> <a href='http://127.0.0.1:8000/#/Register' className="text-primary">Click here to register ...</a> </div>
+	   <div className="text-primary"> <a href='/#/Register' className="text-primary">Click here to register ...</a> </div>
     </div>);
     }
 }

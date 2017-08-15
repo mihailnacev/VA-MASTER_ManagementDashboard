@@ -23,7 +23,7 @@
 					var user=localStorage.getItem("token");
                     if(user==undefined||user=='')
                     {
-						window.location.replace("http://127.0.0.1:8000/#/");
+						window.location.replace("/#/");
 					}	
                     this.state={dataCenters:[], companies:[]};
 					this.createVAMaster=this.createVAMaster.bind(this);
@@ -35,7 +35,7 @@
                      var me=this;
                      // Feature detection for CORS
                      if ('withCredentials' in req) {
-                     req.open('GET','http://127.0.0.1:8000/getAllDataCenters', true);
+                     req.open('GET','/getAllDataCenters', true);
                      req.setRequestHeader('Content-Type', 'application/json');
                     // req.setRequestHeader('Access-Control-Allow-Origin', 'http://localhost:8080');
                      // Just like regular ol' XHR
@@ -66,7 +66,7 @@
 				
 				getCurrentCompanies () {
                     var me = this;
-                    request('http://127.0.0.1:8000/getAllCompanies',function (error, response, body) {
+                    request('/getAllCompanies',function (error, response, body) {
     //                  console.log('error:', error); // Print the error if one occurred
       //                console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
                       var info= JSON.parse(body);

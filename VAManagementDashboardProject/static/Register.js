@@ -60,7 +60,7 @@ xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 xhr.onreadystatechange = function() {//Call a function when the state changes.
     if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
         // Request finished. Do processing here
-		window.location.replace("http://127.0.0.1:8000/#/");
+		window.location.replace("/#/");
      }
 }
 xhr.send("firstname="+firstname+"&lastname="+lastname+"&email="+email+"&username="+username+"&password="+password+"&publickey="+publickey);

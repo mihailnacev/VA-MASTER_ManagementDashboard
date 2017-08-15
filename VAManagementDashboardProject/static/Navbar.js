@@ -18,7 +18,7 @@
 				var me=this;
 				this.set=this.set.bind(this);
 				this.state={ user: ''};
-                request('http://127.0.0.1:8000/getUsername?token='+localStorage.getItem("token"), function (error, response, body) {
+                request('/getUsername?token='+localStorage.getItem("token"), function (error, response, body) {
                      //console.log('error:', error); // Print the error if one occurred
                      //console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was receive
 							me.set(body);
@@ -32,7 +32,7 @@
 
 			logOut() {
                 var xhr = new XMLHttpRequest();
-	          xhr.open("POST", 'http://127.0.0.1:8000/deleteToken/', true);
+	          xhr.open("POST", '/deleteToken/', true);
 
 //Send the proper header information along with the request
 xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -47,7 +47,7 @@ xhr.send("content="+localStorage.getItem("token"));
 				//localStorage.removeItem("loggedUser");
 				//sessionStorage.removeItem("loggedUser");
 				localStorage.removeItem("token");
-				window.location.replace("http://127.0.0.1:8000/#/");
+				window.location.replace("/#/");
 			}
 			
           render() {
