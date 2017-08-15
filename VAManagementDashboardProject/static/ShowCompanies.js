@@ -104,10 +104,14 @@
 			// }).catch(function(err){
             //
 			// });
-                    request('/getAllCompanies/',function (error, response, body) {
-    //                  console.log('error:', error); // Print the error if one occurred
-      //                console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-                      var info= JSON.parse(body);
+                    
+                      var oReq = new XMLHttpRequest();
+oReq.addEventListener("load", reqListener);
+oReq.open("GET", "/getAllCompanies");
+oReq.send();                    	  
+                                function reqListener () {
+                           console.log(this.responseText);
+					  var info= JSON.parse(this.responseText);
                       var lista=[];
                       for(var i=0;i< info.length;i++){
                           lista.push(info[i]);
@@ -115,7 +119,7 @@
                       }
 //                     console.log(lista);
                        me.setState({companies: lista});
-                       });
+								}
                   // jquery.getJSON("/app/getAllCompanies", function( data ) {
                   //       me.setState({companies: data});
                   //   });

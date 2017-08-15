@@ -91,7 +91,7 @@ oReq.send();
                           console.log("Successful_sign_in");
 						  //console.log(body);
 						  //localStorage.setItem("loggedUser", username);
-						  localStorage.setItem("token", this.response.text);
+						  localStorage.setItem("token", this.responseText);
 						  //sessionStorage.loggedUser=username;
 						  window.location.replace("/#/Main");
 					  }
