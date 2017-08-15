@@ -66,10 +66,85 @@
 				
 				getCurrentCompanies () {
                     var me = this;
-                    request('/getAllCompanies',function (error, response, body) {
-    //                  console.log('error:', error); // Print the error if one occurred
-      //                console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-                      var info= JSON.parse(body);
+		    // var key = new NodeRSA({b: 512});
+		    // var text = 'Hello RSA';
+		    // var encrypted = key.encrypt(text, 'base64')
+		    // console.log('encrypted: ', encrypted);
+		    // var decrypted = key.decrypt(encrypted, 'utf8');
+		    // console.log('decrypted: ', decrypted);
+
+                   // var pair=keypair();
+                   // console.log(pair);
+                   // console.log(pair.public);
+	               // var key_public = new NodeRSA(pair.public);
+                   // var text = 'Hello RSA!';
+		           // var encrypted = key_public.encrypt(text, 'base64');
+		           // console.log('encrypted: ', encrypted);
+                   // var key_private = new NodeRSA(pair.private);
+		           // var decrypted = key_private.decrypt(encrypted, 'utf8');
+		           // console.log('decrypted: ', decrypted);
+
+		   // var keyPair = ursa.generatePrivateKey();
+		   // console.log(keyPair);
+                   // var pub = keyPair.toPublicPem('base64');
+                   // console.log(pub);
+                   // var data = 'Hello, world';
+		   // var sig = keyPair.hashAndSign('md5', data);
+                   // console.log(sig);
+        //             var xhr = new XMLHttpRequest();;
+
+                     // Feature detection for CORS
+      //               if ('withCredentials' in xhr) {
+    //                 xhr.open('GET', 'http://192.168.80.204:9443/app/getAllCompanies', true);
+  //                   }else if (typeof XDomainRequest != "undefined") {
+//
+    // Otherwise, check if XDomainRequest.
+    // XDomainRequest only exists in IE, and is IE's way of making CORS requests.
+  //  xhr = new XDomainRequest();
+  //  xhr.open('GET', 'http://192.168.80.204:9443/app/getAllCompanies');
+
+//  } else {
+    // Otherwise, CORS is not supported by the browser.
+   // xhr = null;
+ // }
+
+//  xhr.onload = function() {
+// var responseText = xhr.responseText;
+// var response= xhr.response;
+// console.log(responseText);
+ //me.setState({companies: JSON.parse(responseText)});
+// var object=JSON.parse(response);
+// console.log(object[0]);
+// console.log(object[0].fields);
+ // process the response.
+//};
+
+//  xhr.send();
+
+             //        var me = this;
+			// var myHeaders= new Headers();
+    			// myHeaders.append("Content-Type", "application/json");
+			// //myHeaders.append("Origin", "http://192.168.80.204:9444");
+			// var myInit= { method: 'GET',
+			// 		headers: myHeaders,
+			// 		mode: 'cors',
+			// 		cache: 'default' };
+			// var myRequest=new Request('http://192.168.80.204:9443/app/getAllCompanies',myInit);
+             //        fetch(myRequest)
+             //        .then(function(response){
+			// 	console.log(response);
+			//    me.setState({companies: response});
+			// }).catch(function(err){
+            //
+			// });
+                    
+                      var oReq = new XMLHttpRequest();
+oReq.addEventListener("load", reqListener);
+oReq.open("GET", "/getAllCompanies");
+oReq.send();                    	  
+                                function reqListener () {
+                           console.log(this.responseText);
+					  var info= JSON.parse(this.responseText);
                       var lista=[];
                       for(var i=0;i< info.length;i++){
                           lista.push(info[i]);
@@ -77,7 +152,21 @@
                       }
 //                     console.log(lista);
                        me.setState({companies: lista});
-                       });
+								}
+                  // jquery.getJSON("/app/getAllCompanies", function( data ) {
+                  //       me.setState({companies: data});
+                  //   });
+                  //me.setState({companies: [
+                    //  {"Name":"Company1",
+                      //"Description":"Description1",
+                      //"Address":"Address1"},
+                      //{"Name":"Company2",
+                         // "Description":"Description2",
+                          //"Address":"Address2"},
+                      //{"Name":"Company3",
+                        //  "Description":"Description3",
+                          //"Address":"Address3"}
+                  //]});
                 }
 
                 componentDidMount(){
