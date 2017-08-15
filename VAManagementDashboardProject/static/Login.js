@@ -73,23 +73,30 @@ class Login extends React.Component {
 			console.log("Unsupported local storage");
         }
 		 
-		 request('/login?username='+username+"&password="+pwd, function (error, response, body) {
+		// request('http://192.168.50.4:8000/login?username='+username+"&password="+pwd, function (error, response, body) {
                      //console.log('error:', error); // Print the error if one occurred
                      //console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-					  if (body=="Unsuccessful_sign_in") {
+var oReq = new XMLHttpRequest();
+oReq.addEventListener("load", reqListener);
+oReq.open("GET", "/login?username="+username+"&password="+pwd);
+oReq.send();                    	  
+                                function reqListener () {
+                           console.log(this.responseText);
+
+                                      if (this.responseText=="Unsuccessful_sign_in") {
 						   me.setState({message: 'Unsuccesful Login: Try again'})
 						   console.log("Unsuccesful Login: Try again");
 					  }
 					  else {
                           console.log("Successful_sign_in");
-						  console.log(body);
+						  //console.log(body);
 						  //localStorage.setItem("loggedUser", username);
-						  localStorage.setItem("token", body);
+						  localStorage.setItem("token", this.response.text);
 						  //sessionStorage.loggedUser=username;
 						  window.location.replace("/#/Main");
 					  }
-					 
-		 });
+                           }
+		 //});
 	}
 	render(){
 	   return(

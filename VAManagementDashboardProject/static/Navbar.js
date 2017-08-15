@@ -1,3 +1,4 @@
+
 /*
  * Created by mnace on 8/14/2017.
  */
@@ -18,11 +19,20 @@
 				var me=this;
 				this.set=this.set.bind(this);
 				this.state={ user: ''};
-                request('/getUsername?token='+localStorage.getItem("token"), function (error, response, body) {
+               // request('http://192.168.50.4/getUsername?token='+localStorage.getItem("token"), function (error, response, body) {
                      //console.log('error:', error); // Print the error if one occurred
                      //console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was receive
-							me.set(body);
-                    });
+		//					me.set(body);
+                  //  });
+               function reqListener () {
+  console.log(this.responseText);
+  me.set(this.responseText);
+}
+
+var oReq = new XMLHttpRequest();
+oReq.addEventListener("load", reqListener);
+oReq.open("GET", "/getUsername?token="+localStorage.getItem("token"));
+oReq.send();
             }
 
             set(value){
