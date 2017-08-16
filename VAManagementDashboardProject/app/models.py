@@ -116,7 +116,6 @@ class VAMaster(models.Model):
     URL=models.URLField()
     InternalIP=models.GenericIPAddressField()
     Username=models.CharField(max_length=100)
-    Password = models.CharField(max_length=400,null=True)
     VPNPort=models.IntegerField()
     #Company=models.OneToOneField(Company,null=True,on_delete=models.SET_NULL)
     Company=models.ForeignKey('Company',null=True,on_delete=models.SET_NULL)
@@ -148,3 +147,9 @@ class PublicKey(models.Model):
 class Token(models.Model):
     Content=models.CharField(max_length=500)
     User=models.OneToOneField('UserVA',null=True, on_delete=models.SET_NULL)
+
+class Privileges(models.Model):
+    User=models.ForeignKey('UserVA',null=True, on_delete=models.CASCADE)
+    VAMaster=models.ForeignKey('VAMaster',null=True, on_delete=models.CASCADE)
+    Property=models.CharField(max_length=50)
+    Value=models.CharField(max_length=400)

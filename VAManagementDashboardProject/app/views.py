@@ -5,7 +5,7 @@ import json
 from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.core.urlresolvers import reverse
 from django.template import loader
-from .models import Company, DataCenter, VAMaster, PublicKey, UserVA, Token
+from .models import Company, DataCenter, VAMaster, PublicKey, UserVA, Token, Privileges
 from django.core import serializers
 from rest_framework.decorators import api_view
 from rest_framework.decorators import parser_classes
@@ -65,6 +65,7 @@ def add_va_master(request, format=None):
         company=request.POST.get("company",'')
         dataCenter=request.POST.get("dataCenter",'')
         publickey=request.POST.get("publickey",'')
+        token=request.POST.get("token",'')
     c=Company.objects.get(Name=company);
     dc=DataCenter.objects.get(Name=dataCenter);
     #with open('rsa.pub', 'r') as pub_file:
@@ -74,8 +75,16 @@ def add_va_master(request, format=None):
     #pub = rsa.PublicKey.load_pkcs1(publickey)
     #crypto = rsa.encrypt(password, pub)
     password=password.replace(" ","+")
-    va=VAMaster(Domain=domain, URL=url, InternalIP=ip, Username=username, Password=password, VPNPort=vpnport, Company=c, DataCenter=dc);
+    va=VAMaster(Domain=domain, URL=url, InternalIP=ip, Username=username, VPNPort=vpnport, Company=c, DataCenter=dc);
     va.save();
+    va=VAMaster.objects.get(Domain=domain)
+    user=Token.objects.get(Content=token).User
+    privilege_pass=Privileges(Property='Get password', Value=password, User=user, VAMaster=va)
+    privilege_pass.save()
+    privilege_share=Privileges(Property='Share', Value='1', User=user, VAMaster=va)
+    privilege_share.save()
+    privilege_delete=Privileges(Property='Delete', Value='1', User=user, VAMaster=va)
+    privilege_delete.save()
     return HttpResponse("ADD_VA_MASTER: SUCCESSFUL")
 def register(request, format=None):
     if request.method=='POST':
@@ -123,7 +132,7 @@ def get_all_VAMasters(request):
         response_record['URL']=va.URL
         response_record['InternalIP']=va.InternalIP
         response_record['Username']=va.Username
-        response_record['Password']=va.Password
+        #response_record['Password']=va.Password
         response_record['VPNPort']=va.VPNPort
         response_record['Company']="Name: "+va.Company.Name
         response_record['DataCenter']="Name: "+va.DataCenter.Name
@@ -162,3 +171,24 @@ def get_public_key(request):
     uname = request.GET.get('username', '')
     user = UserVA.objects.get(Username=uname)
     return HttpResponse(user.PublicKey.Content)
+def get_va_password(request):
+    token=request.GET.get('token', '')
+    domain=request.GET.get('domain', '')
+    user=Token.objects.filter(Content=token)[0].User
+    va=VAMaster.objects.filter(Domain=domain)[0]
+    zapis=Privileges.objects.filter(VAMaster=va).filter(User=user).filter(Property='Get password')
+    if not zapis:
+        return HttpResponse("NOT")
+    else:
+        return HttpResponse(zapis[0].Value)
+def get_va_password_delete(request):
+    token=request.GET.get('token', '')
+    domain=request.GET.get('domain', '')
+    user=Token.objects.filter(Content=token)[0].User
+    va=VAMaster.objects.filter(Domain=domain)[0]
+    zapis=Privileges.objects.filter(VAMaster=va).filter(User=user).filter(Property='Delete')
+    if not zapis:
+        return HttpResponse("NOT")
+    else:
+        return HttpResponse(zapis[0].Value)
+

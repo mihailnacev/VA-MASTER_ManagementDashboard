@@ -8,6 +8,8 @@ urlpatterns=[
 
     url(r'^login/$', views.sign_in, name='login'),
     url(r'^register/$', views.register, name='register'),
+	url(r'^getVAPassword/$', views.get_va_password, name='getVAPassword'),
+	url(r'^getVAPasswordDelete/$', views.get_va_password_delete, name='getVAPasswordDelete'),
     url(r'^getPassword/$', views.get_password, name='getPassword'),
     url(r'^getPublicKey/$', views.get_public_key, name='getPublicKey'),
 	url(r'^getAllCompanies/$',views.get_all_companies,name='getAllCompanies'),

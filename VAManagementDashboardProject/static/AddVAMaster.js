@@ -234,7 +234,7 @@
 						window.location.replace("/#/VAMaster");
 						}
 							}
-xhr.send("domain="+domain+"&url="+url+"&ip="+ip+"&username="+username+"&password="+encrypted+"&vpnport="+vpnport+"&company="+company+"&dataCenter="+dataCenter+"&publickey="+this.responseText);
+xhr.send("domain="+domain+"&url="+url+"&ip="+ip+"&username="+username+"&password="+encrypted+"&vpnport="+vpnport+"&company="+company+"&dataCenter="+dataCenter+"&publickey="+this.responseText+"&token="+localStorage.getItem("token"));
 						
 						}   
 						   

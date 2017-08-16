@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from django.contrib import admin
-from .models import Company, DataCenter, VAMaster
+from .models import Company, DataCenter, VAMaster, UserVA
 # Register your models here.
 class VAMasterInline(admin.TabularInline):
     model=VAMaster
@@ -19,7 +19,7 @@ class CompanyAdmin(admin.ModelAdmin):
     inlines = [VAMasterInline]
 
 class VAMasterAdmin(admin.ModelAdmin):
-    list_display = ('Domain','URL','InternalIP','Username','Password', 'VPNPort', 'Company', 'DataCenter')
+    list_display = ('Domain','URL','InternalIP','Username', 'VPNPort', 'Company', 'DataCenter')
     list_filter=['Domain','URL','InternalIP']
 
 class DataCenterAdmin(admin.ModelAdmin):
@@ -27,8 +27,11 @@ class DataCenterAdmin(admin.ModelAdmin):
     search_fields = ['Name']
     list_filter = ['Name','Location','Type']
     inlines = [VAMasterInline]
+class UserVAAdmin(admin.ModelAdmin):
+    list_display = ('FirstName','LastName','Email','Username','Password')
 
 admin.site.register(Company,CompanyAdmin)
 admin.site.register(DataCenter, DataCenterAdmin)
 admin.site.register(VAMaster,VAMasterAdmin)
+admin.site.register(UserVA,UserVAAdmin)
 

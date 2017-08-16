@@ -95,14 +95,38 @@
                    //       "Address":"Address3"}
                  // ]});
                  }
-		modal(pwd, i) {
+		modal(domain,token, i) {
 			var me=this;
-			me.setState({showModal: true, password: pwd, index: i});
+			var oReq = new XMLHttpRequest();
+            oReq.addEventListener("load", reqListener);
+            oReq.open("GET", "/getVAPassword?token="+token+"&domain="+domain);
+            oReq.send();                    	  
+            function reqListener () {
+              console.log(this.responseText);
+			  if(this.responseText!="NOT"){
+			    me.setState({showModal: true, password: this.responseText, index: i});}
+			  else{
+			   	console.log("NOT");  
+			  }
+			}
+			//me.setState({showModal: true, password: pwd, index: i});
 		}
 		
-		modalDelete(domain,password){
+		modalDelete(domain,token){
 			var me=this;
-			me.setState({showModalDelete: true, domain: domain, password:password});
+			var oReq = new XMLHttpRequest();
+            oReq.addEventListener("load", reqListener);
+            oReq.open("GET", "/getVAPasswordDelete?token="+token+"&domain="+domain);
+            oReq.send();                    	  
+            function reqListener () {
+              console.log(this.responseText);
+			  if(this.responseText!="NOT"){
+			    me.setState({showModalDelete: true, domain: domain, password:this.responseText});
+			  }
+			  else{
+			   	console.log("NOT");  
+			  }
+			}
 		}
 		
 		close(){
@@ -261,8 +285,8 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
                             <td>{VAMaster.DataCenter}</td>
 				<td>
 	<Bootstrap.DropdownButton bsStyle='primary' title='Action' id='action'>
-      <Bootstrap.MenuItem bsClass='primary' eventKey="1" onClick={() => this.modalDelete(VAMaster.Domain, VAMaster.Password)}>Delete</Bootstrap.MenuItem>
-      <Bootstrap.MenuItem bsClass='primary' eventKey="2" onClick={() => this.modal(VAMaster.Password, index)}>Get password</Bootstrap.MenuItem>
+      <Bootstrap.MenuItem bsClass='primary' eventKey="1" onClick={() => this.modalDelete(VAMaster.Domain, localStorage.getItem("token"))}>Delete</Bootstrap.MenuItem>
+      <Bootstrap.MenuItem bsClass='primary' eventKey="2" onClick={() => this.modal(VAMaster.Domain, localStorage.getItem("token"), index)}>Get password</Bootstrap.MenuItem>
     </Bootstrap.DropdownButton>
 					</td>
                             </tr>
