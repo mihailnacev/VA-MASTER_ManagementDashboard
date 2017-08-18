@@ -10,6 +10,7 @@ urlpatterns=[
     url(r'^register/$', views.register, name='register'),
 	url(r'^getVAPassword/$', views.get_va_password, name='getVAPassword'),
 	url(r'^getVAPasswordDelete/$', views.get_va_password_delete, name='getVAPasswordDelete'),
+	url(r'^getVAPasswordShare/$', views.get_va_password_share, name='getVAPasswordShare'),
     url(r'^getPassword/$', views.get_password, name='getPassword'),
     url(r'^getPublicKey/$', views.get_public_key, name='getPublicKey'),
 	url(r'^getAllCompanies/$',views.get_all_companies,name='getAllCompanies'),
@@ -23,4 +24,6 @@ urlpatterns=[
     url(r'^getAllDataCenters/$',views.get_all_dataCenters,name='getAllDataCenters'),
     url(r'^(?P<dataCenter_id>[0-9]+)/getDataCenter/$', views.get_dataCenter, name='getDataCenter'),
     url(r'^getAllVAMasters/$',views.get_all_VAMasters, name='getAllVAMasters'),
+	url(r'^getAllUsers/$', views.get_all_users, name='getAllUsers'),
+	url(r'^share/$', views.share, name='share'),
 ]

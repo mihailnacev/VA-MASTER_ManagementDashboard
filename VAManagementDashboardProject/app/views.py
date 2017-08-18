@@ -187,8 +187,47 @@ def get_va_password_delete(request):
     user=Token.objects.filter(Content=token)[0].User
     va=VAMaster.objects.filter(Domain=domain)[0]
     zapis=Privileges.objects.filter(VAMaster=va).filter(User=user).filter(Property='Delete')
+    zapis_password=Privileges.objects.filter(VAMaster=va).filter(User=user).filter(Property='Get password')
     if not zapis:
         return HttpResponse("NOT")
     else:
-        return HttpResponse(zapis[0].Value)
+        return HttpResponse(zapis_password[0].Value)
+def get_va_password_share(request):
+    token=request.GET.get('token', '')
+    domain=request.GET.get('domain', '')
+    user=Token.objects.filter(Content=token)[0].User
+    va=VAMaster.objects.filter(Domain=domain)[0]
+    zapis_share=Privileges.objects.filter(VAMaster=va).filter(User=user).filter(Property='Share')
+    zapis_password=Privileges.objects.filter(VAMaster=va).filter(User=user).filter(Property='Get password')
+    if not zapis_share:
+        return HttpResponse("NOT")
+    else:
+        return HttpResponse(zapis_password[0].Value)
+def get_all_users(request):
+    data_json=[]
+    users=UserVA.objects.all()
+    for user in users:
+        response_record={}
+        response_record['value']=user.Username
+        data_json.append(response_record)
+    data = json.dumps(data_json)
+    return HttpResponse(data, 'application/json')
+def share(request):
+    if request.method=='POST':
+        username=request.POST.get("username",'')
+        password=request.POST.get("password",'')
+        domain=request.POST.get("domain",'')
+    password=password.replace(" ","+")
+    va=VAMaster.objects.filter(Domain=domain)[0]
+    user=UserVA.objects.filter(Username=username)[0]
+    privilege_pass=Privileges(Property='Get password', Value=password, User=user, VAMaster=va)
+    privilege_pass.save()
+    privilege_share=Privileges(Property='Share', Value='1', User=user, VAMaster=va)
+    privilege_share.save()
+    privilege_delete=Privileges(Property='Delete', Value='1', User=user, VAMaster=va)
+    privilege_delete.save()
+    return HttpResponse("SHARE: SUCCESSFUL")
+
+
+
 

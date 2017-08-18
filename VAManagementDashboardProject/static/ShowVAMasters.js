@@ -5,7 +5,9 @@
             var ReactDOM=require('react-dom');
             var Bootstrap=require('react-bootstrap');
             var classNames=require('classnames');
-            var Icons=require('glyphicons');
+            var Icons=require('glyphicons')
+			global.jQuery = require('jquery');
+			var bootstrap=require('bootstrap');
             var request=require('request');
 			var Navbar=require('./Navbar');
             var SideBar=require('./Sidebar');
@@ -13,6 +15,7 @@
             var keypair=require('keypair');
             var sshpk=require('sshpk');
             var fs=require('fs');
+			var Multiselect = require('react-bootstrap-multiselect');
             //var express=require('express');
             //var cors=require('cors');
             //var app= express();
@@ -27,17 +30,33 @@
                     {
 						window.location.replace("/#/");
 					}	
-                    this.state={VAMasters:[], showModal: false, password: '', index: '', domain:'', showModalDelete: false};
+                    this.state={VAMasters:[], showModal: false, password: '', index: '', domain:'', showModalDelete: false, showModalShare: false, list:[]};
 					this.delete=this.delete.bind(this);
 		            this.deleteVA=this.deleteVA.bind(this);
                     this.decrypt=this.decrypt.bind(this);
 					this.close=this.close.bind(this);
 					this.modal=this.modal.bind(this);
 					this.modalDelete=this.modalDelete.bind(this);
+					this.modalShare=this.modalShare.bind(this);
 					this.closeDelete=this.closeDelete.bind(this);
+					this.closeShare=this.closeShare.bind(this);
+					this.share=this.share.bind(this);
+					this.getList=this.getList.bind(this);
                 }
 
-
+                getList(){
+					var me=this;
+					var oReq = new XMLHttpRequest();
+                    oReq.addEventListener("load", reqListener);
+                    oReq.open("GET", "/getAllUsers");
+                    oReq.send();
+					 
+                     function reqListener () {
+                      console.log(this.responseText);
+					  var info= JSON.parse(this.responseText);
+                      me.setState({list: info});
+					}
+				}
                 getCurrentVAMasters () {
                      var req = new XMLHttpRequest();
                      var me=this;
@@ -102,11 +121,11 @@
             oReq.open("GET", "/getVAPassword?token="+token+"&domain="+domain);
             oReq.send();                    	  
             function reqListener () {
-              console.log(this.responseText);
+              console.log('Response(GET_PASSWORD)'+ this.responseText);
 			  if(this.responseText!="NOT"){
 			    me.setState({showModal: true, password: this.responseText, index: i});}
 			  else{
-			   	console.log("NOT");  
+			   	console.log("NOT_VALID_ACCESS");  
 			  }
 			}
 			//me.setState({showModal: true, password: pwd, index: i});
@@ -119,14 +138,32 @@
             oReq.open("GET", "/getVAPasswordDelete?token="+token+"&domain="+domain);
             oReq.send();                    	  
             function reqListener () {
-              console.log(this.responseText);
+              console.log('Response(GET_PASSWORD_DELETE)'+ this.responseText);
 			  if(this.responseText!="NOT"){
 			    me.setState({showModalDelete: true, domain: domain, password:this.responseText});
 			  }
 			  else{
-			   	console.log("NOT");  
+			   	console.log("NOT_VALID_ACCESS"); 
 			  }
 			}
+		}
+		
+		modalShare(domain, token, index) {
+			var me=this;
+			var oReq = new XMLHttpRequest();
+            oReq.addEventListener("load", reqListener);
+            oReq.open("GET", "/getVAPasswordShare?token="+token+"&domain="+domain);
+            oReq.send();                    	  
+            function reqListener () {
+              console.log('Response(GET_PASSWORD_SHARE)'+ this.responseText);
+			  if(this.responseText=="NOT"){
+			    console.log("NOT_VALID_ACCESS"); 
+			  }
+			  else{
+				  me.setState({showModalShare: true, domain: domain, password:this.responseText}); 
+			  }
+			}
+			
 		}
 		
 		close(){
@@ -134,7 +171,90 @@
 		}
 		
 		closeDelete(){
-		  this.setState({ showModalDelete: false, message:''});
+		  this.setState({ showModalDelete: false, password: '', message:''});
+		}
+		
+		closeShare(){
+			this.setState({ showModalShare: false, password: '', message:''})
+		}
+		
+		share(password, domain){
+			var me=this;
+			var selectedUsers=document.getElementsByClassName("multi")[0].selectedOptions;
+			console.log("Domain: "+domain);
+			console.log("Password: "+password);
+			console.log(selectedUsers);
+			//console.log(selectedUsers[0].value);
+			//var list='';
+			
+		  var file=document.getElementsByClassName("pickershare")[0].files[0];
+		  
+		  if(file==undefined){
+		    //alert('Insert a private key for decryption!!!');
+			me.setState({message: 'Insert a private key for decryption!!!'});
+	      }
+		  else{
+		  var reader=new FileReader()
+		  reader.onload=function(e){
+		     var text=reader.result;
+		     //console.log(text);
+		     try{
+                     var key_private=new NodeRSA(text);
+		             //console.log(c);
+                     var decrypted=key_private.decrypt(password, 'utf8');
+                     console.log("Decrypted password (CREATOR): "+decrypted);
+	                 //alert("Decrypted password: " + decrypted);
+				     me.setState({message: 'Decrypted password: '+decrypted});
+					 var passwords=[];
+					 
+					for (var index = 0; index < selectedUsers.length; index++) {
+						console.log("USER["+index+"]"+selectedUsers[index].value);
+						var oReq = new XMLHttpRequest();
+						(function(mIndex) {
+						oReq.addEventListener("load", function () {
+							console.log(mIndex);
+							console.log("PUBLIC_KEY_USER: "+this.responseText);
+							var key_public = new NodeRSA(this.responseText);
+							var encrypted = key_public.encrypt(decrypted, 'base64');
+							console.log("ENCRYPTED_PASSWORD_USER: "+encrypted);
+							console.log("Index: " + mIndex);
+							
+						var xhr = new XMLHttpRequest();
+                        xhr.open("POST", '/share/', true);
+
+						//Send the proper header information along with the request
+						xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+						xhr.onreadystatechange = function() {//Call a function when the state changes.
+						if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+						// Request finished. Do processing here
+						}
+							}
+xhr.send("domain="+domain+"&password="+encrypted+"&username="+selectedUsers[mIndex].value);
+							
+							
+						}); })(index);
+						oReq.open("GET", "/getPublicKey?username="+selectedUsers[index].value);
+						oReq.send();
+			        
+					}
+					 
+		     }
+		    catch(err){//alert('Incorrect private key!!!'); 
+			 me.setState({message: 'Incorrect private key !'}); }
+ 		  }
+		  //reader.readAsText('C:\Users\mnace\Desktop\Model.txt', 'utf8');
+	          reader.readAsText(file);
+          }
+			
+			
+			//var index;
+			//for (index = 0; index < selectedUsers.length; ++index) {
+              //console.log(selectedUsers[index].value);
+			  //list=list+ selectedUsers[index].value+',';
+			//}
+			//list=list+selectedUsers[selectedUsers.length-1].value;
+			//console.log(list);
 		}
 		
 		delete(domain, password){
@@ -236,6 +356,7 @@ xhr.send("domain="+e);}
 
                 componentDidMount(){
                   this.getCurrentVAMasters()
+				  this.getList()
                 }
 
                render(){
@@ -287,6 +408,7 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
 	<Bootstrap.DropdownButton bsStyle='primary' title='Action' id='action'>
       <Bootstrap.MenuItem bsClass='primary' eventKey="1" onClick={() => this.modalDelete(VAMaster.Domain, localStorage.getItem("token"))}>Delete</Bootstrap.MenuItem>
       <Bootstrap.MenuItem bsClass='primary' eventKey="2" onClick={() => this.modal(VAMaster.Domain, localStorage.getItem("token"), index)}>Get password</Bootstrap.MenuItem>
+	  <Bootstrap.MenuItem bsClass='primary' eventKey="3" onClick={() => this.modalShare(VAMaster.Domain, localStorage.getItem("token"), index)}>Share</Bootstrap.MenuItem>
     </Bootstrap.DropdownButton>
 					</td>
                             </tr>
@@ -337,6 +459,8 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
           </Bootstrap.Modal.Footer>
         </Bootstrap.Modal>
 		
+		
+		
 		<Bootstrap.Modal show={this.state.showModalDelete} onHide={this.closeDelete}>
           <Bootstrap.Modal.Header closeButton>
             <Bootstrap.Modal.Title>Deletion status</Bootstrap.Modal.Title>
@@ -352,6 +476,28 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
           <Bootstrap.Modal.Footer>
 		    <Bootstrap.Button onClick={() => this.delete(this.state.domain, this.state.password)}>Confirm</Bootstrap.Button>
             <Bootstrap.Button onClick={this.closeDelete}>Close</Bootstrap.Button>
+          </Bootstrap.Modal.Footer>
+        </Bootstrap.Modal>
+		
+		
+		
+		<Bootstrap.Modal show={this.state.showModalShare} onHide={this.closeShare}>
+          <Bootstrap.Modal.Header closeButton>
+            <Bootstrap.Modal.Title>Share option</Bootstrap.Modal.Title>
+          </Bootstrap.Modal.Header>
+
+          <Bootstrap.Modal.Body>
+			<label for="pickershare">Insert private key</label>
+		    <input className='pickershare' id="pickershare" type="file"/>
+			<h4>Select users</h4>
+			<Multiselect className="multi" data={this.state.list} multiple />
+			<hr/>
+			<p>{this.state.message}</p>
+          </Bootstrap.Modal.Body>
+		  
+          <Bootstrap.Modal.Footer>
+		    <Bootstrap.Button onClick={() => this.share(this.state.password, this.state.domain)}>Confirm</Bootstrap.Button>
+            <Bootstrap.Button onClick={this.closeShare}>Close</Bootstrap.Button>
           </Bootstrap.Modal.Footer>
         </Bootstrap.Modal>
                         </div>
