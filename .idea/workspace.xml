@@ -2,21 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="52602ec6-c724-4f5f-8dcf-288d5b9404a2" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/dataSources/23f6d883-228e-4e90-8abb-1df64b79eb1b.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/e92b37c2-a50e-4cf8-a5e3-d450f8321ae0/_metadata_/metadata" afterPath="$PROJECT_DIR$/.idea/dataSources/e92b37c2-a50e-4cf8-a5e3-d450f8321ae0/_metadata_/metadata" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/e92b37c2-a50e-4cf8-a5e3-d450f8321ae0/_metadata_/metadata.keystream" afterPath="$PROJECT_DIR$/.idea/dataSources/e92b37c2-a50e-4cf8-a5e3-d450f8321ae0/_metadata_/metadata.keystream" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/e92b37c2-a50e-4cf8-a5e3-d450f8321ae0/_metadata_/metadata.keystream.len" afterPath="$PROJECT_DIR$/.idea/dataSources/e92b37c2-a50e-4cf8-a5e3-d450f8321ae0/_metadata_/metadata.keystream.len" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/e92b37c2-a50e-4cf8-a5e3-d450f8321ae0/_metadata_/metadata.len" afterPath="$PROJECT_DIR$/.idea/dataSources/e92b37c2-a50e-4cf8-a5e3-d450f8321ae0/_metadata_/metadata.len" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/e92b37c2-a50e-4cf8-a5e3-d450f8321ae0/_metadata_/metadata_i" afterPath="$PROJECT_DIR$/.idea/dataSources/e92b37c2-a50e-4cf8-a5e3-d450f8321ae0/_metadata_/metadata_i" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/e92b37c2-a50e-4cf8-a5e3-d450f8321ae0/_metadata_/metadata_i.len" afterPath="$PROJECT_DIR$/.idea/dataSources/e92b37c2-a50e-4cf8-a5e3-d450f8321ae0/_metadata_/metadata_i.len" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VAManagementDashboardProject/db.sqlite3" afterPath="$PROJECT_DIR$/VAManagementDashboardProject/db.sqlite3" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VAManagementDashboardProject/app/templates/app/index.html" afterPath="$PROJECT_DIR$/VAManagementDashboardProject/app/templates/app/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VAManagementDashboardProject/app/urls.py" afterPath="$PROJECT_DIR$/VAManagementDashboardProject/app/urls.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VAManagementDashboardProject/app/models.py" afterPath="$PROJECT_DIR$/VAManagementDashboardProject/app/models.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VAManagementDashboardProject/app/views.py" afterPath="$PROJECT_DIR$/VAManagementDashboardProject/app/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VAManagementDashboardProject/static/Login.js" afterPath="$PROJECT_DIR$/VAManagementDashboardProject/static/Login.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VAManagementDashboardProject/static/Navbar.js" afterPath="$PROJECT_DIR$/VAManagementDashboardProject/static/Navbar.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VAManagementDashboardProject/static/Register.js" afterPath="$PROJECT_DIR$/VAManagementDashboardProject/static/Register.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VAManagementDashboardProject/static/ShowVAMasters.js" afterPath="$PROJECT_DIR$/VAManagementDashboardProject/static/ShowVAMasters.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VAManagementDashboardProject/static/bundle.js" afterPath="$PROJECT_DIR$/VAManagementDashboardProject/static/bundle.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VAManagementDashboardProject/static/package.json" afterPath="$PROJECT_DIR$/VAManagementDashboardProject/static/package.json" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -64,11 +59,12 @@
       <file leaf-file-name="ShowVAMasters.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/VAManagementDashboardProject/static/ShowVAMasters.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5661">
-              <caret line="342" column="32" lean-forward="false" selection-start-line="342" selection-start-column="32" selection-end-line="342" selection-end-column="32" />
+            <state relative-caret-position="5984">
+              <caret line="352" column="32" lean-forward="false" selection-start-line="352" selection-start-column="32" selection-end-line="352" selection-end-column="32" />
               <folding>
-                <marker date="1503058852424" expanded="true" signature="20191:20358" ph="{...}" />
-                <marker date="1503058852424" expanded="true" signature="20191:20373" ph="{...}" />
+                <marker date="1503620200117" expanded="true" signature="909:1250" ph="{...}" />
+                <marker date="1503620200117" expanded="true" signature="21117:21285" ph="{...}" />
+                <marker date="1503620200117" expanded="true" signature="21118:21285" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -95,7 +91,7 @@
         </entry>
       </file>
       <file leaf-file-name="console.sql" pinned="false" current-in-tab="false">
-        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/e92b37c2-a50e-4cf8-a5e3-d450f8321ae0/console.sql">
+        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/8a3a6d44-422e-4252-98e3-24472d95b302/console.sql">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -104,17 +100,47 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.app_privileges" pinned="false" current-in-tab="false">
-        <entry file="dbDummy://dbtable:/c288199f/e92b37c2-a50e-4cf8-a5e3-d450f8321ae0/main.app_privileges">
+      <file leaf-file-name="main.app_publickey" pinned="false" current-in-tab="true">
+        <entry file="dbDummy://dbtable:/c288199f/8a3a6d44-422e-4252-98e3-24472d95b302/main.app_publickey">
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
           <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
             <state>
               <filtering enabled="true" />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.app_userva" pinned="false" current-in-tab="false">
+        <entry file="dbDummy://dbtable:/c288199f/8a3a6d44-422e-4252-98e3-24472d95b302/main.app_userva">
           <provider editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
+            </state>
+          </provider>
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.app_token" pinned="false" current-in-tab="false">
+        <entry file="dbDummy://dbtable:/c288199f/8a3a6d44-422e-4252-98e3-24472d95b302/main.app_token">
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
             </state>
           </provider>
         </entry>
@@ -122,8 +148,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/VAManagementDashboardProject/app/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="358">
-              <caret line="219" column="4" lean-forward="false" selection-start-line="219" selection-start-column="4" selection-end-line="219" selection-end-column="4" />
+            <state relative-caret-position="647">
+              <caret line="116" column="36" lean-forward="true" selection-start-line="116" selection-start-column="36" selection-end-line="116" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -132,53 +158,8 @@
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/VAManagementDashboardProject/app/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2499">
+            <state relative-caret-position="1173">
               <caret line="151" column="71" lean-forward="false" selection-start-line="151" selection-start-column="71" selection-end-line="151" selection-end-column="71" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.app_vamaster" pinned="false" current-in-tab="false">
-        <entry file="dbDummy://dbtable:/c288199f/e92b37c2-a50e-4cf8-a5e3-d450f8321ae0/main.app_vamaster">
-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state>
-              <filtering enabled="true" />
-            </state>
-          </provider>
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.app_publickey" pinned="false" current-in-tab="false">
-        <entry file="dbDummy://dbtable:/c288199f/e92b37c2-a50e-4cf8-a5e3-d450f8321ae0/main.app_publickey">
-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state>
-              <filtering enabled="true" />
-            </state>
-          </provider>
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.app_token" pinned="false" current-in-tab="true">
-        <entry file="dbDummy://dbtable:/c288199f/e92b37c2-a50e-4cf8-a5e3-d450f8321ae0/main.app_token">
-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state>
-              <filtering enabled="true" />
-            </state>
-          </provider>
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -217,8 +198,8 @@
         <option value="$PROJECT_DIR$/VAManagementDashboardProject/static/Register.js" />
         <option value="$PROJECT_DIR$/VAManagementDashboardProject/static/ShowDataCenters.js" />
         <option value="$PROJECT_DIR$/VAManagementDashboardProject/static/ShowVAMasters.js" />
-        <option value="$PROJECT_DIR$/VAManagementDashboardProject/static/Navbar.js" />
         <option value="$PROJECT_DIR$/VAManagementDashboardProject/app/models.py" />
+        <option value="$PROJECT_DIR$/VAManagementDashboardProject/static/Navbar.js" />
         <option value="$PROJECT_DIR$/VAManagementDashboardProject/app/views.py" />
       </list>
     </option>
@@ -254,7 +235,6 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -319,6 +299,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -508,7 +489,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="876" extended-state="7" />
+    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -543,22 +524,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/208d393e-317b-459f-9274-ca1fbf8c6bbc/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VAManagementDashboardProject/static/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="867">
-          <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/c288199f/208d393e-317b-459f-9274-ca1fbf8c6bbc/main.app_publickey" />
-    <entry file="dbDummy://dbtable:/c288199f/208d393e-317b-459f-9274-ca1fbf8c6bbc/main.app_userva" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/417807ee-bed8-44fe-bf04-3b5e494bb2e1/console.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -670,11 +635,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/VAManagementDashboardProject/static/ShowVAMasters.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5661">
-          <caret line="342" column="32" lean-forward="false" selection-start-line="342" selection-start-column="32" selection-end-line="342" selection-end-column="32" />
+        <state relative-caret-position="5984">
+          <caret line="352" column="32" lean-forward="false" selection-start-line="352" selection-start-column="32" selection-end-line="352" selection-end-column="32" />
           <folding>
-            <marker date="1503058852424" expanded="true" signature="20191:20358" ph="{...}" />
-            <marker date="1503058852424" expanded="true" signature="20191:20373" ph="{...}" />
+            <marker date="1503620200117" expanded="true" signature="909:1250" ph="{...}" />
+            <marker date="1503620200117" expanded="true" signature="21117:21285" ph="{...}" />
+            <marker date="1503620200117" expanded="true" signature="21118:21285" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -699,24 +665,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/VAManagementDashboardProject/app/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2499">
-          <caret line="151" column="71" lean-forward="false" selection-start-line="151" selection-start-column="71" selection-end-line="151" selection-end-column="71" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="dbDummy://dbtable:/c288199f/e92b37c2-a50e-4cf8-a5e3-d450f8321ae0/main.app_vamaster">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
@@ -728,6 +686,45 @@
         </state>
       </provider>
     </entry>
+    <entry file="dbDummy://dbtable:/c288199f/e92b37c2-a50e-4cf8-a5e3-d450f8321ae0/main.app_token">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/c288199f/e92b37c2-a50e-4cf8-a5e3-d450f8321ae0/main.app_publickey">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/c288199f/e92b37c2-a50e-4cf8-a5e3-d450f8321ae0/main.app_privileges">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/VAManagementDashboardProject/static/Navbar.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="95">
@@ -736,50 +733,66 @@
         </state>
       </provider>
     </entry>
-    <entry file="dbDummy://dbtable:/c288199f/e92b37c2-a50e-4cf8-a5e3-d450f8321ae0/main.app_publickey">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor">
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/8a3a6d44-422e-4252-98e3-24472d95b302/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VAManagementDashboardProject/app/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1173">
+          <caret line="151" column="71" lean-forward="false" selection-start-line="151" selection-start-column="71" selection-end-line="151" selection-end-column="71" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/VAManagementDashboardProject/app/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="358">
-          <caret line="219" column="4" lean-forward="false" selection-start-line="219" selection-start-column="4" selection-end-line="219" selection-end-column="4" />
+        <state relative-caret-position="647">
+          <caret line="116" column="36" lean-forward="true" selection-start-line="116" selection-start-column="36" selection-end-line="116" selection-end-column="36" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="dbDummy://dbtable:/c288199f/e92b37c2-a50e-4cf8-a5e3-d450f8321ae0/main.app_privileges">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
+    <entry file="dbDummy://dbtable:/c288199f/8a3a6d44-422e-4252-98e3-24472d95b302/main.app_token">
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/c288199f/e92b37c2-a50e-4cf8-a5e3-d450f8321ae0/main.app_token">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
         </state>
       </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/c288199f/8a3a6d44-422e-4252-98e3-24472d95b302/main.app_userva">
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/c288199f/8a3a6d44-422e-4252-98e3-24472d95b302/main.app_publickey">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>

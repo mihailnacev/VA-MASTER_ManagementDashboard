@@ -15,6 +15,11 @@ class Login extends React.Component {
 	constructor(){
            super();
 		   //var user=localStorage.getItem("loggedUser");
+		   var user=localStorage.getItem("token");
+           if(user!=undefined&&user!='')
+           {
+				window.location.replace("/#/Main");
+		   }
 		   this.state={message:''};
 		   this.login=this.login.bind(this);
 	}

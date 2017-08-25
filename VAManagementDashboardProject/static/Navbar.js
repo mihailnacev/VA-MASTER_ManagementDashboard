@@ -66,6 +66,7 @@ xhr.send("content="+localStorage.getItem("token"));
 		<div id="wrapper" className="content">
       <Bootstrap.Navbar fluid={true}  style={ {margin: 0} } className='bg-primary'>
             <Bootstrap.Navbar.Header>
+			<img src="/static/logo.png" alt="" />
             <Bootstrap.Navbar.Brand>
               <a href="#/Main" className="text-primary">Vapour Apps</a>
             </Bootstrap.Navbar.Brand>

@@ -30,7 +30,7 @@
                     {
 						window.location.replace("/#/");
 					}	
-                    this.state={VAMasters:[], showModal: false, password: '', index: '', domain:'', showModalDelete: false, showModalShare: false, list:[]};
+                    this.state={VAMasters:[], showModal: false, password: '', index: '', domain:'', showModalDelete: false, showModalShare: false, showModalFailure: false, list:[]};
 					this.delete=this.delete.bind(this);
 		            this.deleteVA=this.deleteVA.bind(this);
                     this.decrypt=this.decrypt.bind(this);
@@ -40,6 +40,7 @@
 					this.modalShare=this.modalShare.bind(this);
 					this.closeDelete=this.closeDelete.bind(this);
 					this.closeShare=this.closeShare.bind(this);
+					this.closeFailure=this.closeFailure.bind(this);
 					this.share=this.share.bind(this);
 					this.getList=this.getList.bind(this);
                 }
@@ -125,6 +126,7 @@
 			  if(this.responseText!="NOT"){
 			    me.setState({showModal: true, password: this.responseText, index: i});}
 			  else{
+				 me.setState({showModalFailure: true});
 			   	console.log("NOT_VALID_ACCESS");  
 			  }
 			}
@@ -143,6 +145,7 @@
 			    me.setState({showModalDelete: true, domain: domain, password:this.responseText});
 			  }
 			  else{
+				 me.setState({showModalFailure: true});
 			   	console.log("NOT_VALID_ACCESS"); 
 			  }
 			}
@@ -157,6 +160,7 @@
             function reqListener () {
               console.log('Response(GET_PASSWORD_SHARE)'+ this.responseText);
 			  if(this.responseText=="NOT"){
+				me.setState({showModalFailure: true});
 			    console.log("NOT_VALID_ACCESS"); 
 			  }
 			  else{
@@ -176,6 +180,10 @@
 		
 		closeShare(){
 			this.setState({ showModalShare: false, password: '', message:''})
+		}
+		
+		closeFailure(){
+			this.setState({ showModalFailure: false, password: '', message:''})
 		}
 		
 		share(password, domain){
@@ -238,6 +246,8 @@ xhr.send("domain="+domain+"&password="+encrypted+"&username="+selectedUsers[mInd
 						oReq.send();
 			        
 					}
+					
+					me.setState({showModalShare: false, message:''});
 					 
 		     }
 		    catch(err){//alert('Incorrect private key!!!'); 
@@ -498,6 +508,21 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
           <Bootstrap.Modal.Footer>
 		    <Bootstrap.Button onClick={() => this.share(this.state.password, this.state.domain)}>Confirm</Bootstrap.Button>
             <Bootstrap.Button onClick={this.closeShare}>Close</Bootstrap.Button>
+          </Bootstrap.Modal.Footer>
+        </Bootstrap.Modal>
+		
+		
+		<Bootstrap.Modal show={this.state.showModalFailure} onHide={this.closeFailure}>
+          <Bootstrap.Modal.Header closeButton>
+            <Bootstrap.Modal.Title>Information Box</Bootstrap.Modal.Title>
+          </Bootstrap.Modal.Header>
+
+          <Bootstrap.Modal.Body>
+			<h3>Insufficient permission for requested action !!!</h3>
+          </Bootstrap.Modal.Body>
+		  
+          <Bootstrap.Modal.Footer>
+            <Bootstrap.Button onClick={this.closeFailure}>Close</Bootstrap.Button>
           </Bootstrap.Modal.Footer>
         </Bootstrap.Modal>
                         </div>

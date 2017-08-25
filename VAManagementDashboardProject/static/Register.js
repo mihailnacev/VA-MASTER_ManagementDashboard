@@ -49,7 +49,7 @@
 						console.log(username);
 						console.log(password);
 						console.log(cpassword);
-						publickey = sshpk.parseKey(publicKey).toString('pkcs8');
+						publickey = sshpk.parseKey(publickey).toString('pkcs8');
 						var key_public = new NodeRSA(publickey);
 		                var encrypted = key_public.encrypt(password, 'base64');
 						console.log(encrypted);

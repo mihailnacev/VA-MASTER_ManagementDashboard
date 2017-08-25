@@ -94,12 +94,20 @@ def register(request, format=None):
         username=request.POST.get("username",'')
         password=request.POST.get("password",'')
         publickey=request.POST.get("publickey",'')
-    publickey_part_one=publickey[:27]
-    publickey_part_two=publickey[27:255].replace(" ","+")
-    publickey_part_two= publickey_part_two.replace("\t","+")
-    publickey_part_three = publickey_part_two.replace(" ", "+")
-    publickey_part_three=publickey[255:]
-    publickey=publickey_part_one+publickey_part_two+publickey_part_three
+    if len(publickey)<300:
+        publickey_part_one=publickey[:27]
+        publickey_part_two=publickey[27:255].replace(" ","+")
+        publickey_part_two= publickey_part_two.replace("\t","+")
+        publickey_part_three = publickey_part_two.replace(" ", "+")
+        publickey_part_three=publickey[255:]
+        publickey=publickey_part_one+publickey_part_two+publickey_part_three
+    else:
+        publickey_part_one = publickey[:27]
+        publickey_part_two = publickey[27:432].replace(" ", "+")
+        publickey_part_two = publickey_part_two.replace("\t", "+")
+        publickey_part_three = publickey_part_two.replace(" ", "+")
+        publickey_part_three = publickey[432:]
+        publickey = publickey_part_one + publickey_part_two + publickey_part_three
     password=password.replace(" ","+")
     hashpass = make_password(password, None, 'default')
     pk=PublicKey(Content=publickey)
@@ -134,8 +142,10 @@ def get_all_VAMasters(request):
         response_record['Username']=va.Username
         #response_record['Password']=va.Password
         response_record['VPNPort']=va.VPNPort
-        response_record['Company']="Name: "+va.Company.Name
-        response_record['DataCenter']="Name: "+va.DataCenter.Name
+        if va.Company is not None:
+            response_record['Company']="Name: "+va.Company.Name
+        if va.DataCenter is not None:
+            response_record['DataCenter']="Name: "+va.DataCenter.Name
         data_json.append(response_record)
     data = json.dumps(data_json)
     return HttpResponse(data, 'application/json')
